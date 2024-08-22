@@ -9,6 +9,7 @@ const port = 3000;
 //models imported
 const userModel= require('./models/user');
 const isLoggedIn= require('./middlewares/logInCheck');
+const { log } = require('console');
 
 
 app.set('view engine','ejs')
@@ -20,13 +21,13 @@ app.use(cookieParser());
 app.get('/',(req,res)=> {
     res.render("losi",{flag:true, result:true,});
 })
-app.get('/test',(req,res)=> {
+app.get('/test',isLoggedIn,(req,res)=> {
     res.render("test");
 })
-app.get('/myprofile',(req,res)=> {
+app.get('/myprofile',isLoggedIn,(req,res)=> {
     res.render("myprofile");
 })
-app.get('/editprofile',(req,res)=> {
+app.get('/editprofile',isLoggedIn,(req,res)=> {
     res.render("editprofile");
 })
 app.get('/main',isLoggedIn,(req,res)=> {
@@ -87,5 +88,43 @@ app.post('/login',async (req,res)=> {
   }
 
 })
+app.post('/main', isLoggedIn,async (req,res)=>{
+    const{name,age,relationship,education,lookingFor} = req.body ;
+    const email= req.user;
+    const user =await userModel.findOne({email:email});
+    if(user){
+        const mainUpdate =await userModel.findOneAndUpdate({email},{ProfileName:name,Age:age,RelationshipStatus:relationship,Education:education,LookingFor:lookingFor},{ new: true });
+        console.log('Updated Main Sucessfully');
+    }
+})  
+app.post('/secondForm', isLoggedIn,async (req,res)=>{
+    const{phNum,favSong,gender,hobby,religion,} = req.body;
+    const email= req.user;
+    const user =await userModel.findOne({email:email});
+    if(user){
+        const mainUpdate =await userModel.findOneAndUpdate({email},{ 
+            FavSong:favSong,
+            Gender:gender,
+            PhNumber:phNum,
+            Hobby:hobby,
+            Religion:religion,},{ new: true });
+        console.log('About Updated Sucessfully');
+    }
+})  
+app.post('/thirdForm', isLoggedIn,async (req,res)=>{
+    const{bioContent,quoteContent,} = req.body;
+    const email= req.user;
+    const user =await userModel.findOne({email:email});
+    if(user){
+        const mainUpdate =await userModel.findOneAndUpdate({email},{ 
+            BioContent:bioContent,
+            QuoteContent:quoteContent,},
+            { new: true });
+        console.log('Bio Updated Sucessfully');
+       await user.save();
+        const updatedUser =await userModel.findOne({email});
+        console.log(updatedUser);
+    }
+})  
 
-app.listen(port);
+app.listen(4000);

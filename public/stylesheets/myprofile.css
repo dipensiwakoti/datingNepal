@@ -49,7 +49,7 @@ body{
     overflow: hidden;
 }
 .username {
-    width: 332px;
+    min-width: max-content;
     height: 60px;
     font-family: Helvetica, Arial, sans-serifbik;
     font-size: 44px;

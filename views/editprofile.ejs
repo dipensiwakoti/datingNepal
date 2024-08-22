@@ -10,7 +10,7 @@
     <div class="img"><img style="width: 100%; height: 100%;" src="/images/userImages/formBackFinal.jpg" alt=""></div>
     <h4>Please Fill the Form Correctly:</h4>
     <div class="main">
-        <form action="">
+        <form action="/main" method="post">
             <div>
                 <label for="name">Name:</label>
             <input type="text" required name="name" id="name" placeholder="Enter your Full Name">
@@ -41,9 +41,9 @@
         <div>
             <label for="lookingFor"><span>Looking for:</span></label>
             <div class="radio">
-            <span>Male</span><input type="radio" name="lookingFor" id="lookingFor">
-            <span>Female</span><input checked type="radio" name="lookingFor" id="lookingFor">
-            <span>Others</span><input type="radio" name="lookingFor" id="lookingFor">
+            <span>Male</span><input type="radio" name="lookingFor" value="Male" id="lookingFor">
+            <span>Female</span><input checked type="radio" name="lookingFor" value="Female" id="lookingFor">
+            <span>Others</span><input type="radio" name="lookingFor" value="Others" id="lookingFor">
            </div>
     </div>
     <input style="background-color: rgba(39, 158, 223, 0.983);padding: 3.4px;padding-right: 4.6px;padding-left: 4.6px; border-radius: 7.7px;border: none;" type="submit" name="submit" value="Submit">
@@ -52,39 +52,39 @@
 
     <div class="secondForm">
         <div class="containerSF">
-            <form action="">
+            <form action="/secondForm" method="post">
                 <div>
                       <label for="phnumber">Phone Number:</label>
-                     <input type="number" required name="phnumber" id="phnumber" placeholder="Enter your Phone Number">
+                     <input type="number" required name="phNumber" id="phnumber" placeholder="Enter your Phone Number">
                 </div>
                 <div>
                       <label for="favmusic">Fav      Song:</label>
-                     <input type="text" required name="favmusic" id="favmusic" placeholder="Whats your favourite song?">
+                     <input type="text" required name="favSong" id="favmusic" placeholder="Whats your favourite song?">
                 </div>
                 <div>
                       <label for="gender">Gender:</label>
                 <div class="gender" style="display: flex;">
-                   <span>Male</span>:<input type="radio" required name="gender" id="gender">
-                   <span>Female</span>:<input type="radio" required name="gender" id="gender">
-                   <span>Others</span>:<input type="radio" required name="gender" id="gender">
+                   <span>Male</span>:<input type="radio" value="Male" required name="gender" id="gender">
+                   <span>Female</span>:<input type="radio" required value="Female" name="gender" id="gender">
+                   <span>Others</span>:<input type="radio" required value="Others" name="gender" id="gender">
                 </div>
             </div>
                 <div class="hobby">
                       <label for="Hobby"><span>Hobby:</span></label>
                       <select name="hobby" id="Hobby">
-                        <option value="cycling">Cycling</option>
-                        <option value="read">Reding books</option>
-                        <option value="write">Writing</option>
-                        <option value="dance">Dancing</option>
-                        <option value="eat">Eating</option>
-                        <option value="adventure">Adventure</option>
-                        <option value="coding">Coding</option>
-                        <option value="movies">Watching Movies</option>
+                        <option value="Cycling">Cycling</option>
+                        <option value="Read">Reding books</option>
+                        <option value="Write">Writing</option>
+                        <option value="Dance">Dancing</option>
+                        <option value="Eat">Eating</option>
+                        <option value="Adventure">Adventure</option>
+                        <option value="Coding">Coding</option>
+                        <option value="Movies">Watching Movies</option>
                       </select> 
                 </div>
                 <div class="religion">
                     <label for="Religion"><span>Religion:</span></label>
-                    <select name="hobby" id="Religion">
+                    <select name="religion" id="Religion">
                       <option value="hindu">Hindu</option>
                       <option value="christian">Chistian</option>
                       <option value="muslim">Muslim</option>
@@ -101,7 +101,7 @@
 
     <div class="thirdForm">
         <div class="containerTF">
-            <form action="">
+            <form action="/thirdForm" method="post">
                 <div>
                    <label for="bio">Edit your bio:</label> 
                     <textarea name="bioContent" id="bio" placeholder="Enter your Bio you like to display in your profile" required></textarea>
@@ -114,7 +114,5 @@
             </form>
         </div>
     </div>
-
-
 </body>
 </html>
