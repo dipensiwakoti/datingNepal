@@ -1,0 +1,163 @@
+*{
+    margin: 0;
+    padding: 0;
+    color: rgba(15, 13, 13, 0.812);
+}
+
+.img{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    display: inline-flex;
+    opacity: .92;
+    object-fit: cover;
+    z-index: -2;
+}
+.main {
+    padding: 20px;
+    width: 27%;
+    height: max-content;
+    margin: 40px;
+    background-color: #34aba06b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 7.7px;
+}
+.main input {
+        margin-left: 12px;
+        height: 34px;
+        background: #eddede4f;
+        margin-bottom: 12px;
+        padding-left:14px ;
+}
+.main label {
+    font-size: 28px;
+    font-weight: 600;
+    font-family: Arial, Helvetica, sans-serif;
+    font:bold
+}
+.main span {
+    font-size: 18px;
+    font-weight: 600;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 2.5px;
+}
+#Relationship {
+    background-color: #9157574a;
+    border: none;
+    border-radius: 12px;
+    padding: 4px;
+    color: maroon;
+}
+#Education {
+    background-color: #9157574a;
+    border: none;
+    border-radius: 12px;
+    padding: 5px;
+    color: rgb(89, 255, 0);
+}
+.radio{
+    display: flex;
+}
+.radio input{
+        display: flex;
+        justify-content: flex-start;
+        align-items: start;
+}
+.radio span {
+    margin-left: 41px;
+    display: inline;
+    font-weight: 500;
+}
+
+.secondForm {
+    width: 39%;
+    margin-left: 500px;
+    margin-top: 25px;
+    background-color: #a7a7c1c7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: max-content;
+    border-radius: 8px;
+}
+.containerSF {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 28px;
+}
+.secondForm input {
+    margin-left: 12px;
+    height: 34px;
+    background: #eddede4f;
+    margin-bottom: 12px;
+    padding-left:14px ;
+}
+.secondForm label {
+font-size: 28px;
+font-weight: 600;
+font-family: Arial, Helvetica, sans-serif;
+font:bold
+}
+.secondForm span {
+font-size: 18px;
+font-weight: 600;
+font-family: Arial, Helvetica, sans-serif;
+margin-top: 2.5px;
+}
+.gender span{
+    margin-left: 25px;
+    font-weight: 500;
+}
+#Hobby{
+    background-color: #9157574a;
+    border: none;
+    border-radius: 12px;
+    padding: 5px;
+    color: rgb(89, 255, 0);
+}
+#Religion{
+    background-color: #d424244a;
+    border: none;
+    border-radius: 12px;
+    padding: 5px;
+    color: rgb(6, 86, 226);
+    margin-top: 5px;
+}
+
+.thirdForm {
+    position: absolute;
+    top: 100px;
+    right: 50px;
+    background-color: #6a7ec9c4;
+    width: max-content;
+    height: max-content;
+}
+.containerTF {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+.thirdForm textarea {
+    background: #eddede4f;
+    margin-left: 12px;
+    margin-bottom: 12px;
+    padding-left:14px ;
+    resize: none;
+    height: 80px;
+    width: 430px;
+    position: relative;
+    top: 14.2px;
+    font-size: 16.2px;
+    font-weight: 500;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.thirdForm label {
+font-size: 28px;
+font-weight: 600;
+font-family: Arial, Helvetica, sans-serif;
+font:bold
+}

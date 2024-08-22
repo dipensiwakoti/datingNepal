@@ -26,6 +26,9 @@ app.get('/test',(req,res)=> {
 app.get('/myprofile',(req,res)=> {
     res.render("myprofile");
 })
+app.get('/editprofile',(req,res)=> {
+    res.render("editprofile");
+})
 app.get('/main',isLoggedIn,(req,res)=> {
     res.render("dating");
 })

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/editProfile.css">
+</head>
+<body>
+    <div class="img"><img style="width: 100%; height: 100%;" src="/images/userImages/formBackFinal.jpg" alt=""></div>
+    <h4>Please Fill the Form Correctly:</h4>
+    <div class="main">
+        <form action="">
+            <div>
+                <label for="name">Name:</label>
+            <input type="text" required name="name" id="name" placeholder="Enter your Full Name">
+        </div>
+            <div>
+                <label for="age">Age:</label>
+            <input style="margin-left: 28px;" type="number" required name="age" id="age" placeholder="What's your Age ?">
+        </div>
+            <div>
+                <label for="Relationship"><span>Relationship Status:</span></label>
+            <select required name="relationship" id="Relationship">
+                <option value="Single">Single</option>
+                <option value="Married">Married</option>
+                <option value="Divorsed">Divorsed</option>
+                <option value="Hide">Hide</option>
+            </select>
+        </div>
+            <div>
+                <label for="Education"><span>Education:</span> </label>
+           <select name="education" id="Education">
+               <option value="School">Schooling</option>
+               <option value="+2">+2</option>
+               <option selected value="Bacherlors">Bachelors</option>
+               <option value="Masters">Masters</option>
+               <option value="Others">Others</option>   
+           </select>
+        </div>
+        <div>
+            <label for="lookingFor"><span>Looking for:</span></label>
+            <div class="radio">
+            <span>Male</span><input type="radio" name="lookingFor" id="lookingFor">
+            <span>Female</span><input checked type="radio" name="lookingFor" id="lookingFor">
+            <span>Others</span><input type="radio" name="lookingFor" id="lookingFor">
+           </div>
+    </div>
+    <input style="background-color: rgba(39, 158, 223, 0.983);padding: 3.4px;padding-right: 4.6px;padding-left: 4.6px; border-radius: 7.7px;border: none;" type="submit" name="submit" value="Submit">
+        </form>
+    </div>
+
+    <div class="secondForm">
+        <div class="containerSF">
+            <form action="">
+                <div>
+                      <label for="phnumber">Phone Number:</label>
+                     <input type="number" required name="phnumber" id="phnumber" placeholder="Enter your Phone Number">
+                </div>
+                <div>
+                      <label for="favmusic">Fav      Song:</label>
+                     <input type="text" required name="favmusic" id="favmusic" placeholder="Whats your favourite song?">
+                </div>
+                <div>
+                      <label for="gender">Gender:</label>
+                <div class="gender" style="display: flex;">
+                   <span>Male</span>:<input type="radio" required name="gender" id="gender">
+                   <span>Female</span>:<input type="radio" required name="gender" id="gender">
+                   <span>Others</span>:<input type="radio" required name="gender" id="gender">
+                </div>
+            </div>
+                <div class="hobby">
+                      <label for="Hobby"><span>Hobby:</span></label>
+                      <select name="hobby" id="Hobby">
+                        <option value="cycling">Cycling</option>
+                        <option value="read">Reding books</option>
+                        <option value="write">Writing</option>
+                        <option value="dance">Dancing</option>
+                        <option value="eat">Eating</option>
+                        <option value="adventure">Adventure</option>
+                        <option value="coding">Coding</option>
+                        <option value="movies">Watching Movies</option>
+                      </select> 
+                </div>
+                <div class="religion">
+                    <label for="Religion"><span>Religion:</span></label>
+                    <select name="hobby" id="Religion">
+                      <option value="hindu">Hindu</option>
+                      <option value="christian">Chistian</option>
+                      <option value="muslim">Muslim</option>
+                      <option value="islam">Islan</option>
+                      <option value="bhddhuist">Buddhist</option>
+                      <option value="other">Others</option>
+
+                    </select> 
+                </div>
+                <input style="background-color: rgba(39, 158, 223, 0.983);padding: 5px;padding-right: 6.7px;padding-left: 6.7px; border-radius: 7.7px;border: none;margin-top: 10px;" type="submit" name="updateAbout" value="Update About">   
+             </form>
+        </div>
+    </div>
+
+    <div class="thirdForm">
+        <div class="containerTF">
+            <form action="">
+                <div>
+                   <label for="bio">Edit your bio:</label> 
+                    <textarea name="bioContent" id="bio" placeholder="Enter your Bio you like to display in your profile" required></textarea>
+                </div>
+                <div>
+                   <label for="quote"> Edit your Quote:</label> 
+                    <textarea style="width: 395px;" name="quoteContent" id="quote" placeholder="Enter a Quote you like to display on your profile" required></textarea>
+                </div>
+     <input style="background-color: rgba(39, 158, 223, 0.983);padding: 5px;padding-right: 6.7px;padding-left: 6.7px; border-radius: 7.7px;border: none;margin-top: 10px;margin-left: 340px;" type="submit" name="updateBio" value="Update Bio">  
+            </form>
+        </div>
+    </div>
+
+
+</body>
+</html>
