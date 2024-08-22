@@ -8,7 +8,6 @@ const userSchema = mongoose.Schema({
     DOB:Number,
     Adress:String,
     RelationshipStatus:String,
-    Educaion:String,
     LookingFor:String,
     friends: [{
         type: mongoose.Schema.Types.ObjectId,
@@ -16,6 +15,7 @@ const userSchema = mongoose.Schema({
     }],
     email:String,
     password: String,
+    Educaion:String,
     profilepic:{
         type:String,
         default:'default_user.jpg',

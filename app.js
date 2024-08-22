@@ -93,7 +93,15 @@ app.post('/main', isLoggedIn,async (req,res)=>{
     const email= req.user;
     const user =await userModel.findOne({email:email});
     if(user){
-        const mainUpdate =await userModel.findOneAndUpdate({email},{ProfileName:name,Age:age,RelationshipStatus:relationship,Education:education,LookingFor:lookingFor},{ new: true });
+        const mainUpdate =await userModel.findOneAndUpdate({email},
+            {
+            ProfileName:name,
+            Age:age,
+            RelationshipStatus:relationship,
+            Educaion:education,
+            LookingFor:lookingFor,
+        },
+        { new: true });
         console.log('Updated Main Sucessfully');
     }
 })  
@@ -107,24 +115,39 @@ app.post('/secondForm', isLoggedIn,async (req,res)=>{
             Gender:gender,
             PhNumber:phNum,
             Hobby:hobby,
-            Religion:religion,},{ new: true });
+            Religion:religion,},
+            { new: true });
         console.log('About Updated Sucessfully');
     }
 })  
 app.post('/thirdForm', isLoggedIn,async (req,res)=>{
     const{bioContent,quoteContent,} = req.body;
     const email= req.user;
-    const user =await userModel.findOne({email:email});
+    const user =await userModel.findOne({email:`${req.user}`});
     if(user){
-        const mainUpdate =await userModel.findOneAndUpdate({email},{ 
+        const mainUpdate =await userModel.findOneAndUpdate({email:`${req.user}`},
+            { 
             BioContent:bioContent,
             QuoteContent:quoteContent,},
             { new: true });
         console.log('Bio Updated Sucessfully');
-       await user.save();
-        const updatedUser =await userModel.findOne({email});
+        await user.save();
+        const updatedUser =await userModel.findOne({email:`${req.user}`});
         console.log(updatedUser);
+       const name=updatedUser.Name;
+       const age=updatedUser.Age;
+       const email=updatedUser.email;
+       const lookingFor=updatedUser.LookingFor;
+       const profileName=updatedUser.ProfileName;
+       const relationship=updatedUser.RelationshipStatus;
+       const favSong=updatedUser.FavSong;
+       const gender=updatedUser.Gender;
+       const hobby=updatedUser.Hobby;
+       const religion=updatedUser.Religion;
+       const BioContent = updatedUser.BioContent;
+       const QuoteContent = updatedUser.QuoteContent;
+       const education=updatedUser.Educaion;
+          res.render("myprofile",{name,lookingFor,profileName,gender,hobby,religion,favSong,relationship,age,education,BioContent,QuoteContent});
     }
 })  
-
-app.listen(4000);
+app.listen(3000);
