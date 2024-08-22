@@ -196,3 +196,78 @@ body{
     scale: 1.07;
     border-radius: 7px;
 }
+.bio {
+    display: flex;
+    width: 77%;
+    margin: auto;
+    gap: 48px;
+    margin-top: 60px;
+    justify-content: center;
+    align-items: center;
+    height: max-content;
+}
+.txtBio {
+        font-size: 28px;
+        font-weight: 700;
+        font-family: Arial, Helvetica, sans-serif;
+}
+.contentBio {
+    height: max-content;
+    width: 100%;
+    border: 2.1px solid #d14f4f70;
+    padding: 28px;
+    font-size: 24px;
+    line-height: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #330000cc;
+}
+.quote {
+    display: flex;
+    width: 77%;
+    margin: auto;
+    gap: 48px;
+    margin-top: 60px;
+    justify-content: center;
+    align-items: center;
+    height: max-content;
+}
+.txtQuote {
+        font-size: 28px;
+        font-weight: 700;
+        font-family: Arial, Helvetica, sans-serif;
+}
+.contentQuote {
+    height: max-content;
+    width: 100%;
+    border: 2.1px solid #e96e0082;
+    padding: 28px;
+    font-size: 24px;
+    line-height: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #330000cc;
+}
+.formMind {
+    height: 117px;
+    width: 67%;
+    margin-left: 30%;
+    margin-top: 50px;
+}
+.form_mind_input {
+    width: 502px;
+    height: 44px;
+    border-radius: 7px;
+    border: 1px solid;
+    padding: 9px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-left: 28px;
+}
+.formMind .create{
+        padding: 6px;
+        padding-left: 16px;
+        padding-right: 16px;
+        background: #04a0ff;
+        border: none;
+        border-radius: 8px;
+        font-family: Arial, Helvetica, sans-serif;
+        margin-left: 15px;
+}
