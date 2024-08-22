@@ -1,0 +1,28 @@
+/* @media screen and(max-width=60vw) {
+    nav{
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+}
+body{
+    background-color: red;
+}
+
+
+
+} */
+@media screen and (max-width=60vw) {
+   *{
+    background-color: black;
+   }
+    nav{
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+}
+body{
+    background-color: red;
+}
+
+}

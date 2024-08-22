@@ -1,0 +1,198 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.wrap {
+    width: 100vw;
+    min-height: 100vh;
+    background-color: #D9D9D9;
+}
+.nav {
+    height: 300px;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.left{
+    width: 618px;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    margin-left: 200px;
+}
+.editIcon{
+    width: 400px;
+    height: 100%;
+    display: block;
+    display: flex;
+    margin-right: 100px;
+    justify-content: center;
+    align-items: center;
+    /* background-color: rgb(71, 152, 65); */
+}
+.wholeView{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 34px;
+}
+.profileIcon{
+    width: 143px;
+    height: 143px;
+    border-radius: 100%;
+    /* background-color: red; */
+    margin-bottom: 40px;
+    object-fit: cover;
+    overflow: hidden;
+}
+.username {
+    width: 332px;
+    height: 60px;
+    font-family: Helvetica, Arial, sans-serifbik;
+    font-size: 44px;
+    color: rgb(5, 5, 5);
+    font-weight: 700;
+    line-height: 52.2px;
+}
+/* // <uniquifier>: Use a unique and descriptive class name
+// <weight>: Use a value from 300 to 900 */
+
+.rubik .username{
+  font-family: "Rubik", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+.followText{
+    bottom: 50px;
+    position: relative;
+    right: 43px;
+    font-size: 28px;
+    color: blue;
+    font-weight: 600;
+}
+.mainIcon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background: #0087ff; */
+    flex-direction: column-reverse;
+    border: none;
+    border-radius: 20px;
+    padding: 10px;
+}
+.svg-edit{
+    width: 116px;
+    height: 64px;
+}
+.bellowNav{
+        width: 52%;
+        margin: auto;
+        margin-top: -35px;
+        height: max-content;
+}
+.userInfo{
+        width: 100%;
+        height: 100%;
+        padding: 15px;
+}
+.userInfo span{
+        font-size: 32px;
+        font-weight: 600;
+        color: #050505;
+        line-height: 10px;
+}
+.userInfo .designUserinfo {
+    display: inline-flex;
+    font-size: 18px;
+    font-family: Helvetica, Arial, sans-serif;
+    line-height: 27.9px;
+    font-weight: 500;
+    margin-left: 9px;
+}
+.moreAbout {
+    width: 57%;
+    margin: auto;
+    font-size: 33px;
+    font-weight: 800;
+    font-family: Helvetica, Arial, sans-serif;
+    line-height: 46px;
+    color: rgb(92 95 101);
+    margin-top: -23px;
+}
+.moreAbout span:hover{
+    background-color: rgba(116, 111, 111, 0.34);
+}
+.break{
+    width: 89vw;
+    margin: auto;
+    height: 0.4px;
+    background-color: rgba(90, 87, 87, 0.584);
+    position: relative;
+    top: 19px;
+
+}
+.multiFeature{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        margin-top: 49px;
+}
+.MF-wrap{
+    display: flex;
+    gap: 250px;
+      
+}
+.followers {
+    font-size: 24px;
+    font-weight: 600;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 29.33px;
+    color: blue;
+    width: max-content;
+    padding: 7px;
+    display: flex;
+    justify-content: center;
+}
+.followers:hover {
+    background-color:rgba(116, 111, 111, 0.34) ;
+    scale: 1.07;
+    border-radius: 7px;
+}
+.views {
+    font-size: 22px;
+    font-weight: 600;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 29.33px;
+    color: rgba(255, 13, 0, 0.932);
+    width: max-content;
+    padding: 7px;
+    display: flex;
+    justify-content: center;
+}
+.views:hover {
+    background-color:rgba(116, 111, 111, 0.34) ;
+    scale: 1.07;
+    border-radius: 7px;
+}
+.chat {
+    font-size: 20px;
+    font-weight: 600;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 29.33px;
+    color: rgba(95, 97, 100, 0.943);
+    width: max-content;
+    padding: 7px;
+    display: flex;
+    justify-content: center;
+}
+.chat:hover {
+    background-color:rgba(116, 111, 111, 0.34) ;
+    scale: 1.07;
+    border-radius: 7px;
+}

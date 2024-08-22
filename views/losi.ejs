@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/losi.css">
+</head>
+<body>
+    <div class="wrap">
+
+
+        <div class="signup">
+            <div class="displayText"><h3>Welcome to <div class="img"><img src="/images/userImages/logo.png" alt="Could't load"></div></h3>
+           <h4>Crete your account</h4>
+        </div>
+        <div class="form">
+            <form action="/signup" method="post">
+                <input type="text" name="fullName" required placeholder="Full Name">
+                <input type="email" name="email" required placeholder="Email">
+                <input type="password" required name="password" placeholder="Password">
+                <input id="submit" type="submit" name="submit"  value="Crete My Account">
+            </form>
+        </div>
+        <% if(flag == true){ %>
+            <span style="margin-top: -70px;margin-left:87.7px;font-style: italic; display: block;width: 98%;font-size: 29px; color: rgb(11 207 100 / 85%); font-family: 'Times New Roman', Times, serif;">Please fill the form !</span>
+                <% }else { %>
+                 <span style="margin-top: -70px;margin-left: 50px;font-style: oblique; display: block;width: 98%;font-size: 27px; color: red; font-family: 'Times New Roman', Times, serif;text-decoration: underline;">User with same credentials already found.</span>
+                 <% } %>
+
+        </div>
+        <div class="colorMatch">
+        <div class="orText"><div class="circle"><span>or</span></div></div>
+        <div class="login">
+            <div class="logintextDisplay"> <span>Login your account</span></div>
+            <form action="/login" method="post">
+                <input type="email" required name="email" placeholder="Email">
+                <input type="password" required name="password" placeholder="Password">
+                <input id="submitLogin" type="submit" name="submit"  value="Login">
+            </form>
+            <% if(result == true){ %>
+                <span style="margin-top: 9.7px;margin-left:85.2px;font-style: italic; display: block;width: 104%;font-size: 29px; color: rgb(11 207 100 / 85%); font-family: 'Times New Roman', Times, serif;">Please fill the form !</span>
+                    <% }else { %>
+                     <span style="margin-top: 26px;margin-left: 60px;font-style: oblique; display: block;width: 104%;font-size: 29px; color: red; font-family: 'Times New Roman', Times, serif;text-decoration: underline;">Email or Password is wrong.</span>
+                     <% } %>
+        </div>
+        </div>
+
+
+    </div>
+</body>
+</html>
