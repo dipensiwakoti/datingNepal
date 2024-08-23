@@ -24,17 +24,82 @@ app.get('/',(req,res)=> {
 app.get('/test',isLoggedIn,(req,res)=> {
     res.render("test");
 })
-app.get('/myprofile',isLoggedIn,(req,res)=> {
-    res.render("myprofile");
+app.get('/myprofile',isLoggedIn,async (req,res)=> {
+    const email = req.user ;
+    const user =await userModel.findOne({email});
+    const pass =  user.ProfilePass;
+    const jwt_main = req.cookies.ProfileName;
+    const jwt_seondform = req.cookies.PhNumber;
+    const jwt_thirdform = req.cookies.BioContent;
+    if(jwt_main=='' || jwt_seondform==''  || jwt_thirdform=='' ){
+        if(pass==0){
+        console.log(user.ProfilePass);
+        res.redirect('/editprofile');
+    }
+    else {
+        console.log("My profile !")
+        const email= req.user;
+        const updatedUser =await userModel.findOne({email:`${req.user}`});
+        if(updatedUser){
+            console.log(updatedUser);
+            const name=updatedUser.Name;
+            const age=updatedUser.Age;
+            const email=updatedUser.email;
+            const lookingFor=updatedUser.LookingFor;
+            const profileName=updatedUser.ProfileName;
+            const relationship=updatedUser.RelationshipStatus;
+            const favSong=updatedUser.FavSong;
+            const gender=updatedUser.Gender;
+            const hobby=updatedUser.Hobby;
+            const religion=updatedUser.Religion;
+            const BioContent = updatedUser.BioContent;
+            const QuoteContent = updatedUser.QuoteContent;
+            const education=updatedUser.Educaion;
+            res.render("myprofile",{name,lookingFor,profileName,gender,hobby,religion,favSong,relationship,age,education,BioContent,QuoteContent});
+        }
+        }
+}
+    else {
+        console.log("My profile !")
+        const email= req.user;
+        const updatedUser =await userModel.findOne({email:`${req.user}`});
+        if(updatedUser){
+            console.log(updatedUser);
+            const name=updatedUser.Name;
+            const age=updatedUser.Age;
+            const email=updatedUser.email;
+            const lookingFor=updatedUser.LookingFor;
+            const profileName=updatedUser.ProfileName;
+            const relationship=updatedUser.RelationshipStatus;
+            const favSong=updatedUser.FavSong;
+            const gender=updatedUser.Gender;
+            const hobby=updatedUser.Hobby;
+            const religion=updatedUser.Religion;
+            const BioContent = updatedUser.BioContent;
+            const QuoteContent = updatedUser.QuoteContent;
+            const education=updatedUser.Educaion;
+            res.render("myprofile",{name,lookingFor,profileName,gender,hobby,religion,favSong,relationship,age,education,BioContent,QuoteContent});
+        }
+        }
 })
-app.get('/editprofile',isLoggedIn,(req,res)=> {
-    res.render("editprofile");
+app.get('/editprofile',isLoggedIn,async (req,res)=> {
+    const email = req.user ;
+    const jwt_main = req.cookies.ProfileName;
+    const jwt_seondform = req.cookies.PhNumber;
+    const jwt_thirdform = req.cookies.BioContent;
+    if(jwt_main!=='' && jwt_seondform!==''  && jwt_thirdform!=='' ){
+        await userModel.findOneAndUpdate({email},{ProfilePass:"1"});
+      }
+    res.render("editprofile");      
 })
 app.get('/main',isLoggedIn,(req,res)=> {
     res.render("dating");
 })
 app.get('/logout',isLoggedIn,(req,res)=> {
     res.cookie("token",'');
+    res.cookie("PhNumber",'');
+    res.cookie("BioContent",'');
+    res.cookie("ProfileName",'');
     res.redirect('/');
 })
 app.post('/signup',async (req,res)=> {
@@ -51,6 +116,9 @@ app.post('/signup',async (req,res)=> {
         })
         const token = jwt.sign({email:email},"shhh");
         res.cookie("token",token);
+        res.cookie("PhNumber",'');
+        res.cookie("BioContent",'');
+        res.cookie("ProfileName",'');
         const flag = true ;
         res.redirect('/main');
      })
@@ -73,6 +141,9 @@ app.post('/login',async (req,res)=> {
             if(result==true){
             const token = jwt.sign({email:email},"shhh");
             res.cookie("token",token);
+            res.cookie("PhNumber",'');
+            res.cookie("BioContent",'');
+            res.cookie("ProfileName",'');
             const result= true ;
             res.redirect('/main');
               }
@@ -88,23 +159,34 @@ app.post('/login',async (req,res)=> {
   }
 
 })
-app.post('/main', isLoggedIn,async (req,res)=>{
-    const{name,age,relationship,education,lookingFor} = req.body ;
-    const email= req.user;
-    const user =await userModel.findOne({email:email});
-    if(user){
-        const mainUpdate =await userModel.findOneAndUpdate({email},
-            {
-            ProfileName:name,
-            Age:age,
-            RelationshipStatus:relationship,
-            Educaion:education,
-            LookingFor:lookingFor,
-        },
-        { new: true });
-        console.log('Updated Main Sucessfully');
-    }
-})  
+app.post('/main', isLoggedIn, async (req, res) => {
+    let { name, age, relationship, education, lookingFor } = req.body;
+    let email = req.user;
+
+        const user = await userModel.findOne({ email: email });
+        
+        if (user) {
+            const mainUpdate = await userModel.findOneAndUpdate(
+                { email },
+                {
+                    ProfileName: name,
+                    Age: age,
+                    RelationshipStatus: relationship,
+                    Educaion: education, // Corrected typo here
+                    LookingFor: lookingFor,
+                },
+                { new: true }
+            );
+
+            if (mainUpdate) {
+                console.log('Updated Main Successfully');
+                res.cookie("ProfileName","");
+                const token = jwt.sign({ ProfileName: name }, "shhhh");
+                res.cookie("ProfileName", token);
+                res.redirect('/editprofile');
+            }   
+        } 
+});
 app.post('/secondForm', isLoggedIn,async (req,res)=>{
     const{phNum,favSong,gender,hobby,religion,} = req.body;
     const email= req.user;
@@ -118,8 +200,12 @@ app.post('/secondForm', isLoggedIn,async (req,res)=>{
             Religion:religion,},
             { new: true });
         console.log('About Updated Sucessfully');
+        const token = jwt.sign({PhNumber:phNum},"shhhh");
+        res.cookie("PhNumber",'');
+        res.cookie("PhNumber",token);
+        res.redirect('/editprofile');
     }
-})  
+})          
 app.post('/thirdForm', isLoggedIn,async (req,res)=>{
     const{bioContent,quoteContent,} = req.body;
     const email= req.user;
@@ -132,22 +218,34 @@ app.post('/thirdForm', isLoggedIn,async (req,res)=>{
             { new: true });
         console.log('Bio Updated Sucessfully');
         await user.save();
+        const token = jwt.sign({BioContent:bioContent},"shhhh");
+        res.cookie("BioContent",'');
+        res.cookie("BioContent",token);
+        res.redirect('/editprofile');
+        
         const updatedUser =await userModel.findOne({email:`${req.user}`});
         console.log(updatedUser);
-       const name=updatedUser.Name;
-       const age=updatedUser.Age;
-       const email=updatedUser.email;
-       const lookingFor=updatedUser.LookingFor;
-       const profileName=updatedUser.ProfileName;
-       const relationship=updatedUser.RelationshipStatus;
-       const favSong=updatedUser.FavSong;
-       const gender=updatedUser.Gender;
-       const hobby=updatedUser.Hobby;
-       const religion=updatedUser.Religion;
-       const BioContent = updatedUser.BioContent;
-       const QuoteContent = updatedUser.QuoteContent;
-       const education=updatedUser.Educaion;
-          res.render("myprofile",{name,lookingFor,profileName,gender,hobby,religion,favSong,relationship,age,education,BioContent,QuoteContent});
     }
 })  
-app.listen(3000);
+app.get('/Myprofilee',isLoggedIn,async (req,res)=>{
+    const email= req.user;
+    const updatedUser =await userModel.findOne({email:`${req.user}`});
+    if(updatedUser){
+        console.log(updatedUser);
+        const name=updatedUser.Name;
+        const age=updatedUser.Age;
+        const email=updatedUser.email;
+        const lookingFor=updatedUser.LookingFor;
+        const profileName=updatedUser.ProfileName;
+        const relationship=updatedUser.RelationshipStatus;
+        const favSong=updatedUser.FavSong;
+        const gender=updatedUser.Gender;
+        const hobby=updatedUser.Hobby;
+        const religion=updatedUser.Religion;
+        const BioContent = updatedUser.BioContent;
+        const QuoteContent = updatedUser.QuoteContent;
+        const education=updatedUser.Educaion;
+        res.render("myprofile",{name,lookingFor,profileName,gender,hobby,religion,favSong,relationship,age,education,BioContent,QuoteContent});
+    }
+})  
+app.listen(4000);
