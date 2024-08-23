@@ -21,8 +21,8 @@ app.use(cookieParser());
 app.get('/',(req,res)=> {
     res.render("losi",{flag:true, result:true,});
 })
-app.get('/test',isLoggedIn,(req,res)=> {
-    res.render("test");
+app.get('/test',(req,res)=> {
+    res.render("dating");
 })
 app.get('/myprofile',isLoggedIn,async (req,res)=> {
     const email = req.user ;
@@ -93,7 +93,7 @@ app.get('/editprofile',isLoggedIn,async (req,res)=> {
     res.render("editprofile");      
 })
 app.get('/main',isLoggedIn,(req,res)=> {
-    res.render("dating");
+    res.render("test");
 })
 app.get('/logout',isLoggedIn,(req,res)=> {
     res.cookie("token",'');
@@ -226,26 +226,32 @@ app.post('/thirdForm', isLoggedIn,async (req,res)=>{
         const updatedUser =await userModel.findOne({email:`${req.user}`});
         console.log(updatedUser);
     }
-})  
-app.get('/Myprofilee',isLoggedIn,async (req,res)=>{
-    const email= req.user;
-    const updatedUser =await userModel.findOne({email:`${req.user}`});
-    if(updatedUser){
-        console.log(updatedUser);
-        const name=updatedUser.Name;
-        const age=updatedUser.Age;
-        const email=updatedUser.email;
-        const lookingFor=updatedUser.LookingFor;
-        const profileName=updatedUser.ProfileName;
-        const relationship=updatedUser.RelationshipStatus;
-        const favSong=updatedUser.FavSong;
-        const gender=updatedUser.Gender;
-        const hobby=updatedUser.Hobby;
-        const religion=updatedUser.Religion;
-        const BioContent = updatedUser.BioContent;
-        const QuoteContent = updatedUser.QuoteContent;
-        const education=updatedUser.Educaion;
-        res.render("myprofile",{name,lookingFor,profileName,gender,hobby,religion,favSong,relationship,age,education,BioContent,QuoteContent});
+})
+app.post('/searchuser', isLoggedIn,async (req,res)=>{
+    let{search}= req.body;
+    console.log(search);
+    let updatedUser = await userModel.findOne({ProfileName:search});
+        if(updatedUser){
+            console.log(updatedUser);
+            const name=updatedUser.Name;
+            const age=updatedUser.Age;
+            const email=updatedUser.email;
+            const lookingFor=updatedUser.LookingFor;
+            const profileName=updatedUser.ProfileName;
+            const relationship=updatedUser.RelationshipStatus;
+            const favSong=updatedUser.FavSong;
+            const gender=updatedUser.Gender;
+            const hobby=updatedUser.Hobby;
+            const religion=updatedUser.Religion;
+            const BioContent = updatedUser.BioContent;
+            const QuoteContent = updatedUser.QuoteContent;
+            const education=updatedUser.Educaion;
+            res.render("myprofile",{name,lookingFor,profileName,gender,hobby,religion,favSong,relationship,age,education,BioContent,QuoteContent});
+        }
+
+    else{
+        res.send("User with the name is not found!")
     }
-})  
-app.listen(4000);
+})
+
+app.listen(3000);
