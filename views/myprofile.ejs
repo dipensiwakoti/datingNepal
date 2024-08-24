@@ -12,8 +12,18 @@
 </head>
 <body>
     <div class="profileUpload">
-        <div><h4><a style="text-decoration: none; color: black;font-weight: 500;" href="/uploadProfile">Profile Upload</a></h4></div>
-        <div><h4><a style="text-decoration: none; color: black;font-weight: 500;" href="/deleteProfile">Delete Profile</a></h4></div>
+        <div style="display: flex; justify-content: center;"><h4><a style="text-decoration: none; color: black;font-weight: 500;color: #dbc9c9;
+" href="/uploadProfile">Profile Upload</a></h4></div>
+        <div style="display: flex; justify-content: center;"><h4><a style="text-decoration: none; color: black;font-weight: 500;color:#bd4343;" href="/deleteProfile">Delete Profile</a></h4></div>
+    </div>
+    <div class="moreAboutContent">
+        <div class="moreaboutContainer">
+            <div>Hobby:<span><%= hobby %></span></div>
+            <div>Contact Number:<span> <%= phNumber %></span></div>
+            <div>Favourite Song:<span><%= favSong %> </span></div>
+            <div>Gender:<span><%= gender %></span></div>
+            <div>Religion:<span><%= religion %></span></div>
+        </div>
     </div>
     <div class="wrap">
         <div class="nav">
@@ -42,7 +52,7 @@
                 <h3><span> Education</span>:<div class="designUserinfo"><%= education %></div></h3>
             </div>
         </div>
-        <div class="moreAbout"><span style="padding: 9px; border-radius: 7px;"> More about</span></div>
+        <div class="moreAbout"><span class="mouseAbout" style="padding: 9px;cursor: pointer; border-radius: 7px;"> More about</span></div>
         <div class="break"></div>
         <div class="multiFeature">
             <div class="MF-wrap">

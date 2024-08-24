@@ -3,20 +3,40 @@ body{
     padding: 0;
 }
 .profileUpload {
-        position: absolute;
-        width: 143px;
-        height: max-content;
-        padding: 18.2px;
-        left: 175px;
-        top: -250px;
-        background: #98a995;
-        display: flex;
-        justify-content: center;
-        font-weight: 500;
-        border-radius: 8px;
-        z-index: 3;
-        flex-direction: column;
- }
+    position: absolute;
+    width: 161px;
+    height: max-content;
+    left: 175px;
+    top: -250px;
+    background: #929f90;
+    display: flex;
+    justify-content: center;
+    font-weight: 500;
+    border-radius: 8px;
+    z-index: 3;
+    flex-direction: column;
+}
+.profileUpload div:hover {
+    background-color: #80887e8f;
+}
+.moreAboutContent {
+    position: absolute;
+    top: 657px;
+    left: 250px;
+    min-width: 500px;
+    background-color: #b59fa6eb;
+    padding: 23px;
+    font-size: 32px;
+    color: #282626;
+    border-radius: 23px;
+    display: none;
+    z-index: 4;
+}
+.moreAboutContent span{     
+       margin-left: 12px;
+        font-size: 27px;
+        color: #675050;
+}
 
 .wrap {
     width: 100vw;
@@ -220,21 +240,23 @@ body{
     justify-content: center;
     align-items: center;
     height: max-content;
+
 }
 .txtBio {
         font-size: 28px;
         font-weight: 700;
         font-family: Arial, Helvetica, sans-serif;
-}
-.contentBio {
-    height: max-content;
-    width: 100%;
-    border: 2.1px solid #d14f4f70;
-    padding: 28px;
-    font-size: 24px;
-    line-height: 30px;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #330000cc;
+    }
+    .contentBio {
+        height: max-content;
+        width: 100%;
+        border: 2.1px solid #d14f4f70;
+        padding: 28px;
+        font-size: 24px;
+        line-height: 30px;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #330000cc;
+        cursor: not-allowed;
 }
 .quote {
     display: flex;
@@ -260,6 +282,8 @@ body{
     line-height: 30px;
     font-family: Arial, Helvetica, sans-serif;
     color: #330000cc;
+    cursor: not-allowed;
+
 }
 .formMind {
     height: 117px;

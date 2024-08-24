@@ -50,12 +50,13 @@ app.get('/myprofile',isLoggedIn,async (req,res)=> {
             const favSong=updatedUser.FavSong;
             const gender=updatedUser.Gender;
             const hobby=updatedUser.Hobby;
+            const phNumber=updatedUser.PhNumber;
             const religion=updatedUser.Religion;
             const BioContent = updatedUser.BioContent;
             const QuoteContent = updatedUser.QuoteContent;
             const education=updatedUser.Educaion;
             const profilePic = updatedUser.profilepic;
-            res.render("myprofile",{name,lookingFor,profileName,gender,hobby,religion,favSong,relationship,age,education,BioContent,QuoteContent,profilePic});
+            res.render("myprofile",{name,lookingFor,profileName,gender,hobby,religion,favSong,relationship,age,education,BioContent,QuoteContent,profilePic,phNumber});
         }
         }
 }
@@ -69,6 +70,7 @@ app.get('/myprofile',isLoggedIn,async (req,res)=> {
             const lookingFor=updatedUser.LookingFor;
             const profileName=updatedUser.ProfileName;
             const relationship=updatedUser.RelationshipStatus;
+            const phNumber=updatedUser.PhNumber;
             const favSong=updatedUser.FavSong;
             const gender=updatedUser.Gender;
             const hobby=updatedUser.Hobby;
@@ -78,7 +80,7 @@ app.get('/myprofile',isLoggedIn,async (req,res)=> {
             const education=updatedUser.Educaion;
             const profilePic = updatedUser.profilepic;
 
-            res.render("myprofile",{name,lookingFor,profileName,gender,hobby,religion,favSong,relationship,age,education,BioContent,QuoteContent,profilePic});
+            res.render("myprofile",{name,lookingFor,profileName,gender,hobby,religion,favSong,relationship,age,education,BioContent,QuoteContent,profilePic,phNumber});
         }
         }
 })
@@ -88,9 +90,18 @@ app.get('/editprofile',isLoggedIn,async (req,res)=> {
     const jwt_seondform = req.cookies.PhNumber;
     const jwt_thirdform = req.cookies.BioContent;
     if(jwt_main!=='' && jwt_seondform!==''  && jwt_thirdform!=='' ){
-        await userModel.findOneAndUpdate({email},{ProfilePass:"1"});
-      }
-    res.render("editprofile");      
+        await userModel.findOneAndUpdate({email},{ProfilePass:"1"},{new:true});
+    }
+    const user = await userModel.findOne({email});
+    const profileName = user.ProfileName;
+    const profilepass = user.ProfilePass;
+    const age = user.Age;
+    const phNumber = user.PhNumber;
+    const favSong = user.FavSong;
+    const bioContent = user.BioContent;
+    const quoteContent = user.QuoteContent;
+
+    res.render("editprofile",{profileName,age,phNumber,favSong,bioContent,quoteContent,profilepass});      
 })
 app.get('/main',isLoggedIn,(req,res)=> {
     res.render("test");
@@ -190,19 +201,19 @@ app.post('/main', isLoggedIn, async (req, res) => {
         } 
 });
 app.post('/secondForm', isLoggedIn,async (req,res)=>{
-    const{phNum,favSong,gender,hobby,religion,} = req.body;
+    const{phNumber,favSong,gender,hobby,religion,} = req.body;
     const email= req.user;
     const user =await userModel.findOne({email:email});
     if(user){
         const mainUpdate =await userModel.findOneAndUpdate({email},{ 
             FavSong:favSong,
             Gender:gender,
-            PhNumber:phNum,
+            PhNumber:phNumber,
             Hobby:hobby,
             Religion:religion,},
             { new: true });
         console.log('About Updated Sucessfully');
-        const token = jwt.sign({PhNumber:phNum},"shhhh");
+        const token = jwt.sign({PhNumber:phNumber},"shhhh");
         res.cookie("PhNumber",'');
         res.cookie("PhNumber",token);
         res.redirect('/editprofile');
@@ -242,6 +253,7 @@ app.post('/searchuser', isLoggedIn,async (req,res)=>{
             const relationship=updatedUser.RelationshipStatus;
             const favSong=updatedUser.FavSong;
             const gender=updatedUser.Gender;
+            const phNumber=updatedUser.PhNumber;
             const hobby=updatedUser.Hobby;
             const religion=updatedUser.Religion;
             const BioContent = updatedUser.BioContent;
@@ -252,7 +264,7 @@ app.post('/searchuser', isLoggedIn,async (req,res)=>{
                 res.redirect('/myprofile');
             }
             else{
-            res.render("userProfile",{name,lookingFor,profileName,gender,hobby,religion,favSong,relationship,age,education,BioContent,QuoteContent,profilePic});
+            res.render("userProfile",{name,lookingFor,profileName,gender,hobby,religion,favSong,relationship,age,education,BioContent,QuoteContent,profilePic,phNumber});
              }
         }
 

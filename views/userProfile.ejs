@@ -11,8 +11,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="profileUpload">
-        <h4><a style="text-decoration: none; color: black;font-weight: 500;" href="/uploadProfile">Profile Upload</a></h4>
+    <div class="moreAboutContent">
+        <div class="moreaboutContainer">
+            <div>Hobby:<span><%= hobby %></span></div>
+            <div>Contact Number:<span> <%= phNumber %></span></div>
+            <div>Favourite Song:<span><%= favSong %> </span></div>
+            <div>Gender:<span><%= gender %></span></div>
+            <div>Religion:<span><%= religion %></span></div>
+        </div>
     </div>
     <div class="wrap">
         <div class="nav">
@@ -33,7 +39,7 @@
                 <h3><span> Education</span>:<div class="designUserinfo"><%= education %></div></h3>
             </div>
         </div>
-        <div class="moreAbout"><span style="padding: 9px; border-radius: 7px;"> More about</span></div>
+        <div class="moreAbout"><span class="mouseAbout" style="padding: 9px; border-radius: 7px;"> More about</span></div>
         <div class="break"></div>
         <div class="multiFeature">
             <div class="MF-wrap">
@@ -60,4 +66,5 @@
         </div>
     </div>
 </body>
+<script src="/javascripts/trial.js"></script>
 </html>
