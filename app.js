@@ -76,7 +76,9 @@ app.get('/myprofile',isLoggedIn,async (req,res)=> {
             const BioContent = updatedUser.BioContent;
             const QuoteContent = updatedUser.QuoteContent;
             const education=updatedUser.Educaion;
-            res.render("myprofile",{name,lookingFor,profileName,gender,hobby,religion,favSong,relationship,age,education,BioContent,QuoteContent});
+            const profilePic = updatedUser.profilepic;
+
+            res.render("myprofile",{name,lookingFor,profileName,gender,hobby,religion,favSong,relationship,age,education,BioContent,QuoteContent,profilePic});
         }
         }
 })
