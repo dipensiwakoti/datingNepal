@@ -155,8 +155,10 @@ app.post('/login',async (req,res)=> {
         })
 }
   else {
-    res.send("Something went wrong !")
-  }
+    const result = false ;
+    const flag = true;
+    res.render('losi',{result:result,flag}); 
+ }
 
 })
 app.post('/main', isLoggedIn, async (req, res) => {
@@ -229,6 +231,7 @@ app.post('/thirdForm', isLoggedIn,async (req,res)=>{
 })
 app.post('/searchuser', isLoggedIn,async (req,res)=>{
     let{search}= req.body;
+    let emailUser = req.user ;
     let updatedUser = await userModel.findOne({ProfileName:search});
         if(updatedUser){
             const name=updatedUser.Name;
@@ -245,7 +248,12 @@ app.post('/searchuser', isLoggedIn,async (req,res)=>{
             const QuoteContent = updatedUser.QuoteContent;
             const education=updatedUser.Educaion;
             const profilePic = updatedUser.profilepic;
+            if(email==emailUser){
+                res.redirect('/myprofile');
+            }
+            else{
             res.render("userProfile",{name,lookingFor,profileName,gender,hobby,religion,favSong,relationship,age,education,BioContent,QuoteContent,profilePic});
+             }
         }
 
     else{
