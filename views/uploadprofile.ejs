@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .user-display-onclick{
+ width: 547px;
+ height: 376px;
+ background-color: #e5e5e5;
+ top: 100px;
+ position: absolute;
+ z-index: 30;
+ margin-left: 34%;
+}
+.userCred{
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ width: 60%;
+ height: 100%;
+ margin: auto;
+ flex-direction: column;
+}
+.userCred .signUpOnly {
+ display: block;
+}
+   </style>
+
+</head>
+<body>
+    <div class="user-display-onclick"> 
+        <div class="userCred">
+             <form action="/upload" method="post" enctype="multipart/form-data">
+               <input class="auth" style="margin-bottom: 6.7px;" required type="file"  name="file">
+               <div class="userCred-Buttom">
+                <input style="background-color: rgba(66, 66, 176, 0.952); color: rgb(4, 4, 4); border-radius: 7px; padding: 6.1px;" type="submit" value="Upload Profile Picture">
+              </div>
+             </form>
+        </div>
+    </div>
+</body>
+</html>

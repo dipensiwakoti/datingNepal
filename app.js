@@ -5,11 +5,13 @@ const path= require('path');
 const bcrypt= require('bcrypt');
 const cookieParser = require('cookie-parser');
 const port = 3000;
+const fs = require('node:fs');
 
 //models imported
 const userModel= require('./models/user');
 const isLoggedIn= require('./middlewares/logInCheck');
-const { log } = require('console');
+const { log, profile } = require('console');
+const upload = require('./multer/multer')
 
 
 app.set('view engine','ejs')
@@ -33,16 +35,13 @@ app.get('/myprofile',isLoggedIn,async (req,res)=> {
     const jwt_thirdform = req.cookies.BioContent;
     if(jwt_main=='' || jwt_seondform==''  || jwt_thirdform=='' ){
         if(pass==0){
-        console.log(user.ProfilePass);
         res.redirect('/editprofile');
     }
     else {
-        console.log("My profile !")
         const email= req.user;
         const updatedUser =await userModel.findOne({email:`${req.user}`});
         if(updatedUser){
-            console.log(updatedUser);
-            const name=updatedUser.Name;
+            const name=updatedUser.ProfileName;
             const age=updatedUser.Age;
             const email=updatedUser.email;
             const lookingFor=updatedUser.LookingFor;
@@ -55,17 +54,16 @@ app.get('/myprofile',isLoggedIn,async (req,res)=> {
             const BioContent = updatedUser.BioContent;
             const QuoteContent = updatedUser.QuoteContent;
             const education=updatedUser.Educaion;
-            res.render("myprofile",{name,lookingFor,profileName,gender,hobby,religion,favSong,relationship,age,education,BioContent,QuoteContent});
+            const profilePic = updatedUser.profilepic;
+            res.render("myprofile",{name,lookingFor,profileName,gender,hobby,religion,favSong,relationship,age,education,BioContent,QuoteContent,profilePic});
         }
         }
 }
     else {
-        console.log("My profile !")
         const email= req.user;
         const updatedUser =await userModel.findOne({email:`${req.user}`});
         if(updatedUser){
-            console.log(updatedUser);
-            const name=updatedUser.Name;
+            const name=updatedUser.ProfileName;
             const age=updatedUser.Age;
             const email=updatedUser.email;
             const lookingFor=updatedUser.LookingFor;
@@ -229,10 +227,8 @@ app.post('/thirdForm', isLoggedIn,async (req,res)=>{
 })
 app.post('/searchuser', isLoggedIn,async (req,res)=>{
     let{search}= req.body;
-    console.log(search);
     let updatedUser = await userModel.findOne({ProfileName:search});
         if(updatedUser){
-            console.log(updatedUser);
             const name=updatedUser.Name;
             const age=updatedUser.Age;
             const email=updatedUser.email;
@@ -246,12 +242,43 @@ app.post('/searchuser', isLoggedIn,async (req,res)=>{
             const BioContent = updatedUser.BioContent;
             const QuoteContent = updatedUser.QuoteContent;
             const education=updatedUser.Educaion;
-            res.render("myprofile",{name,lookingFor,profileName,gender,hobby,religion,favSong,relationship,age,education,BioContent,QuoteContent});
+            const profilePic = updatedUser.profilepic;
+            res.render("userProfile",{name,lookingFor,profileName,gender,hobby,religion,favSong,relationship,age,education,BioContent,QuoteContent,profilePic});
         }
 
     else{
         res.send("User with the name is not found!")
     }
 })
-
+app.get('/uploadprofile',isLoggedIn,(req,res)=>{
+    res.render('uploadprofile');
+})
+app.post('/upload', upload.single('file'), isLoggedIn,async function (req, res) {
+     const email =req.user ;
+     const user = await userModel.findOne({email});
+     const fn = user.profilepic;
+     if(fn!="default_user.jpg"){
+       fs.unlink(`./public/images/profilePictures/${fn}`,(err)=>{
+        if(err) throw(err);
+        else console.log('preve profile deleted and new is uploaded!');
+       })
+     }
+     user.profilepic = req.file.filename;
+     await user.save();
+     res.redirect('/myprofile');
+  })
+app.get('/deleteprofile',isLoggedIn,async function (req, res) {
+     const email =req.user ;
+     const user = await userModel.findOne({email});
+     const fn = user.profilepic;
+     if(fn!="default_user.jpg"){
+       fs.unlink(`./public/images/profilePictures/${fn}`,(err)=>{
+        if(err) throw(err);
+        else console.log('Profile Picture deleted!');
+       })
+     }
+     user.profilepic ='default_user.jpg';
+     await user.save();
+     res.redirect('/myprofile');
+  })
 app.listen(3000);

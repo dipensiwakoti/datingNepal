@@ -2,6 +2,21 @@ body{
     margin: 0;
     padding: 0;
 }
+.profileUpload {
+        position: absolute;
+        width: 143px;
+        height: max-content;
+        padding: 18.2px;
+        left: 175px;
+        top: -250px;
+        background: #98a995;
+        display: flex;
+        justify-content: center;
+        font-weight: 500;
+        border-radius: 8px;
+        z-index: 3;
+        flex-direction: column;
+ }
 
 .wrap {
     width: 100vw;
