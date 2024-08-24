@@ -28,7 +28,7 @@ userinfo.addEventListener("click",()=>{
     wrap.style.filter="blur(0px)";
     flag=0;
 })
- moreAboutIcon.addEventListener('click',()=>{
+ mouseAbout.addEventListener('click',()=>{
     if(check == 0){
         moreAboutContent.style.display= 'block';
         check =1;

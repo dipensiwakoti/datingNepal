@@ -203,6 +203,7 @@ app.post('/main', isLoggedIn, async (req, res) => {
 app.post('/secondForm', isLoggedIn,async (req,res)=>{
     const{phNumber,favSong,gender,hobby,religion,} = req.body;
     const email= req.user;
+    console.log(religion);
     const user =await userModel.findOne({email:email});
     if(user){
         const mainUpdate =await userModel.findOneAndUpdate({email},{ 
@@ -213,6 +214,7 @@ app.post('/secondForm', isLoggedIn,async (req,res)=>{
             Religion:religion,},
             { new: true });
         console.log('About Updated Sucessfully');
+        await user.save();
         const token = jwt.sign({PhNumber:phNumber},"shhhh");
         res.cookie("PhNumber",'');
         res.cookie("PhNumber",token);
