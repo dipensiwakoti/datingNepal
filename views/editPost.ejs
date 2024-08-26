@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrap" style="width: 100vw; height: 100vh; background-color: rgba(0, 0, 0, 0.84);margin-left: -8px; margin-top: -8px;position: absolute;">
+        <div class="form" style="margin-top: 83px;margin-left: 90px;">
+        <form action="/edit" method="post">
+            <input type="hidden" name="id" value="<%= id %>">
+            <input style="height: 43px;width: 851px;background-color: rgba(124, 119, 119, 0.585);color: rgb(161 144 144);" type="text" name="newContent" placeholder="Enter New Post" value="<%= prevContent %>">
+            <input type="submit" name="submit" value="Update Post" style="display: block;margin-top: 12px;margin-left: 80px; background-color: blue; color: black;padding: 4.3px; border-radius: 10.6px;padding: 7.7px;">
+        </form>
+    </div>
+
+
+    </div>
+</body>
+</html>

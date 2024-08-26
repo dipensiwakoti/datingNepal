@@ -31,5 +31,9 @@ const userSchema = mongoose.Schema({
     Religion:String,
     BioContent:String,
     QuoteContent:String,
+    posts: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'post',
+    }],
 })
  module.exports = mongoose.model('user', userSchema);   

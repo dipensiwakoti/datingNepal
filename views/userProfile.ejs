@@ -64,6 +64,26 @@
                 </div>
             </div>
         </div>
+        <div class="wrapPost">
+            <% users.posts.reverse().forEach(function(post){ %>
+               
+         <div class="post" style="margin-top: 70px;margin-left: 52px; background-color: rgba(11, 10, 10, 0.875);width: 994px;height: fit-content;margin-bottom: 20px;border-radius: 9px;">
+     
+             <div class="elementsPost" style="padding: 15px;">
+                 <div class="top" style="display: flex; flex-direction: row;justify-content: space-between;">
+             <div class="username"  style="color: rgb(16 100 255);font-size: 16px; display: inline;margin-left: 25px;cursor: pointer;"><%= users.ProfileName %></div>
+             <div class="time" style="color: white;font-size: 16px; display: inline;margin-right: 15px;" ><%= post.Time %></div>    
+            </div>
+            <div class="content" style="color: white;font-size: 25px; margin-left: 16px;margin-top: 7.7px;"><%= post.Text %> </div>
+            <% if(post.likes.indexOf(actualUser._id) === -1){ %>
+                <div class="likes" style="color: white;margin-left: 24.1px;margin-top: 20px;"><span class="likeSpan" style=" color: rgb(16 100 255);"><div class="likesCountFinalTwo" style="display: inline;"> <a style="text-decoration: none;" href="/like/<%= post._id %>"> Like</a></div></span><span>    <span></span>  </span><%= post.likes.length %></div>
+             <% }else{ %>
+                <div class="likes" style="color: white;margin-left: 24.1px;margin-top: 20px;"><span class="likeSpan" style=" color: rgb(16 100 255);"><div class="likesCountFinalTwo" style="display: inline;"> <a style="text-decoration: none;" href="/like/<%= post._id %>"> Unlike</a></div></span><span>    <span></span>  </span><%= post.likes.length %></div>
+              <% } %>
+             </div>
+         </div> 
+             <% }) %>
+     </div>
     </div>
 </body>
 <script src="/javascripts/trial.js"></script>

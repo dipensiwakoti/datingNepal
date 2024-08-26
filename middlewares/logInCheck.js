@@ -7,8 +7,8 @@ module.exports =function isLoggedIn(req,res,next){
      res.redirect('/');
    } else{
      
-   const data = jwt.verify(cookie , 'shhh');
-   req.user = data.email ;
-   next() ;
+   const data = jwt.verify(cookie, 'shhh');
+   req.user = data ;
+   next();
    }
 }
