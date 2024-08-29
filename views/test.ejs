@@ -6,8 +6,12 @@
     <title>Dating.Nepal</title>
     <link rel="stylesheet" href="/stylesheets/dating.css" class="css" />
     <link rel="stylesheet" href="/stylesheets/responsive.css" class="css" />
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
   </head>
   <body>
+    <input type="hidden" name="userIdActualTest" value="<%= usersss._id %>" id="userIdActualTest">
+
     <header>
       <div class="bar"></div>
       <nav>
@@ -57,22 +61,13 @@
                 </div> 
             </div>
             </div>
-             <!-- <div class="buttom">
-                <div class="firstButtom"></div>
-                <div class="secondButtom"></div>
-             </div> -->
         </div>
-
-
-
-
-
-
-
-
-
+        <script>
+          const userIdSearched = "<%= usersss._id %>";
+      </script>
     </main>
     
+    <footer class="flexallcenter">Copyright &copy; All right reserved.</footer>
   </body>
-  <footer class="flexallcenter">Copyright &copy; All right reserved.</footer>
+  <script src="/javascripts/socket.js"></script>
 </html>

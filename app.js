@@ -10,6 +10,7 @@ const fs = require('node:fs');
 //models imported
 const userModel= require('./models/user');
 const postModel= require('./models/post');
+const chatModel= require('./models/chat');
 const isLoggedIn= require('./middlewares/logInCheck');
 const { log, profile } = require('console');
 const upload = require('./multer/multer')
@@ -97,6 +98,7 @@ app.get('/editprofile',isLoggedIn,async (req,res)=> {
         await userModel.findOneAndUpdate({email},{ProfilePass:"1"},{new:true});
     }
     const user = await userModel.findOne({email});
+    const usersss = await userModel.findOne({email});
     const profileName = user.ProfileName;
     const profilepass = user.ProfilePass;
     const age = user.Age;
@@ -105,10 +107,12 @@ app.get('/editprofile',isLoggedIn,async (req,res)=> {
     const bioContent = user.BioContent;
     const quoteContent = user.QuoteContent;
 
-    res.render("editprofile",{profileName,age,phNumber,favSong,bioContent,quoteContent,profilepass});      
+    res.render("editprofile",{profileName,age,phNumber,favSong,bioContent,quoteContent,profilepass,usersss});      
 })
-app.get('/main',isLoggedIn,(req,res)=> {
-    res.render("test");
+app.get('/main',isLoggedIn,async (req,res)=> {
+  const usersss = await userModel.findOne({email:req.user.email});
+  console.log(usersss._id)
+    res.render("test",{usersss});
 })
 app.get('/logout',isLoggedIn,(req,res)=> {
     res.cookie("token",'');
@@ -331,8 +335,9 @@ app.get('/delete/:postId',isLoggedIn,async function (req, res) {
 app.get('/edit/:postId',isLoggedIn,async function (req, res) {
   email = req.user.email ;
   const post = await postModel.findOne({_id:req.params.postId});
+  const usersss = await userModel.findOne({email});
   const prevContent = post.Text;
-  res.render('editPost',{id:req.params.postId,prevContent});
+  res.render('editPost',{id:req.params.postId,prevContent,usersss});
 })
 app.post('/edit',isLoggedIn,async function (req, res) {
     let{newContent} =req.body ; 
@@ -341,17 +346,67 @@ app.post('/edit',isLoggedIn,async function (req, res) {
     const editedPost =await postModel.findOneAndUpdate({_id:id},{Text:newContent});
     res.redirect('/myprofile');
 })
-app.get('/reload', (req, res) => {
-  res.send(`
-    <html>
-      <body>
-        <script>
-          window.location.reload();
-        </script>
-      </body>
-    </html>
-  `);
-});
+
+const socket = require('socket.io');
+const http = require('http');
+
+const server = http.createServer(app); 
+const io = socket(server);
+
+
+app.get('/chat/:userId', isLoggedIn ,async (req,res)=>{
+  const userId = req.params.userIdAcualTest; //searched User
+  const actualUser = await userModel.findOne({email:req.user.email}); //loggedInUser
+  const searchedUser = await userModel.findOne({_id:req.params.userId}); //searchedUser
+  
+  res.render('chat',{actualUser:actualUser,searchedUser});
+})
+
+let lastimportantmessage = null ;
+
+io.on('connection',async (socket)=>{     
+  console.log('A user Connected',socket.id);
+  const userId = socket.handshake.auth.searched; // loggedInUser id
+  if(lastimportantmessage){
+    socket.broadcast.emit('onlineStatus',{lastimportantmessage});
+  }
+  const updatedUser =  await userModel.findOneAndUpdate({_id:userId},{isOnline:'1'},{new:true});
+  await updatedUser.save();
+   lastimportantmessage = userId;
+  socket.broadcast.emit('onlineStatus',{userId});
+
+  socket.on('disconnect',async function(){
+    await userModel.findOneAndUpdate({_id:userId},{isOnline:'0'},{new:true});
+    await updatedUser.save();
+    socket.broadcast.emit('offlineStatus',{userId});
+    console.log('made 0');
+  })
+}); 
+
+app.post('/chatSave',async (req,res)=>{
+  const message = req.body.message;
+  const senderId = req.body.senderId;
+  const receiverId = req.body.receiverId;
+  const chat = await chatModel.create({
+    message:message ,
+    senderId,
+    receiverId,
+  });
+  await chat.save();
+  res.send('Message Inserted!');
+})
+
+
+
+
+
+
+
+
+
+
+
+
 app.get('/like/:postId',isLoggedIn,async function (req, res) {
   const post = await postModel.findOne({_id:req.params.postId}).populate('user');
 //   console.log(req.user.user_id);
@@ -383,4 +438,4 @@ console.log('like added');
   }
   await post.save();
 })
-app.listen(3000);
+server.listen(3000);

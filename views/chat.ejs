@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with user</title>
+    <link rel="stylesheet" href="/stylesheets/chat.css">
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="wrap">
+        <div class="left">
+            <div class="users">
+                <div class="topLook">
+                    <div class="imgChat">
+                        <img src="/images/profilePictures/<%= actualUser.profilepic %>" alt="Could'nt load !" >
+                    </div>
+                    <span><%= actualUser.ProfileName %></span>
+                </div>
+                <div class="chatedUsers">
+                </div>
+            </div>
+        </div>
+        <div class="middle">
+            <div class="wholeChat">
+                <div class="topMiddleChat">
+                    <div class="img">
+                        <img src="/images/profilePictures/<%= searchedUser.profilepic %>" alt="Not found!">
+                    </div>
+                    <div style="display: flex; flex-direction: column;">
+                    <div class="username"><span><%= searchedUser.ProfileName %></span></div>
+             <div id="<%= searchedUser._id %> status"></div>
+                   </div>
+                    <div class="icons"></div>
+                </div>
+                <div class="allMessages">
+                    <div class="wrapMessages">
+                        <div class="our-user-message"><span>Hello sir</span></div>
+                        <div class="distinct-user-message"> <span>hi madam,how can i help you?</span></div>
+                        <div class="our-user-message"><span>Hello sir</span></div>
+                        <div class="distinct-user-message"> <span>hi madam,how can i help you?</span></div>
+                    </div>
+                </div>
+                <div class="sendMessage">
+                    <form action="#" method="" id="formMsg">
+                       <input class="input" type="text" name="sendMsg" id="sendMsg" placeholder="Enter your Message">
+                       <input class="submit" type="submit" name="submitMsg" id="submitMsg" value="Send Message">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const senderId = "<%= actualUser._id %>";
+        const receiverId = "<%= searchedUser._id %>";
+    </script>
+</body>
+<script src="/javascripts/trial.js"></script>
+<script src="/javascripts/socket.js"></script>
+</html>

@@ -35,5 +35,9 @@ const userSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'post',
     }],
+    isOnline:{
+        type: String , 
+        default:'0',
+    }
 })
  module.exports = mongoose.model('user', userSchema);   

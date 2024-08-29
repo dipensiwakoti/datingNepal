@@ -4,11 +4,13 @@ const wrap = document.querySelector('.wrap');
 const userinfo = document.querySelector('.bellowNav');
 const likesCountFinal = document.querySelectorAll('.likesCountFinal');
 const likesCountFinalTwo = document.querySelectorAll('.likesCountFinalTwo');
-console.log(likesCountFinalTwo);
+const userId = document.querySelector('#userId');
+console.log(userId);
 
 const moreAboutIcon = document.querySelector('.moreAbout');
 const mouseAbout = document.querySelector('.mouseAbout');
 const moreAboutContent = document.querySelector('.moreAboutContent');
+
 let flag = 0;
 let check = 0;
 profileDisplay.addEventListener("click",()=>{
@@ -64,7 +66,6 @@ userinfo.addEventListener("click",()=>{
         },10);
        });
     })
-
 
 
 

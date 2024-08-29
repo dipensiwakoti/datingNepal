@@ -9,8 +9,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
 </head>
 <body>
+<input type="hidden" name="userIdSearched" id="userIdSearched" value="<%= users._id %>">
     <div class="moreAboutContent">
         <div class="moreaboutContainer">
             <div>Hobby:<span><%= hobby %></span></div>
@@ -45,7 +47,7 @@
             <div class="MF-wrap">
                 <div class="followers"><span>Followers:677</span></div>
                 <div class="views"><span>Views:1.5k</span></div>
-                <div class="chat"><span>Chat</span></div>
+                <div class="chat"><span><a href="/chat/<%= users._id %>">Chat</a></span></div>
             </div>
         </div>
         <div class="wrapBio">
@@ -69,7 +71,7 @@
                
          <div class="post" style="margin-top: 70px;margin-left: 52px; background-color: rgba(11, 10, 10, 0.875);width: 994px;height: fit-content;margin-bottom: 20px;border-radius: 9px;">
      
-             <div class="elementsPost" style="padding: 15px;">
+             <div class="elementsPost" style="padding: 15px">
                  <div class="top" style="display: flex; flex-direction: row;justify-content: space-between;">
              <div class="username"  style="color: rgb(16 100 255);font-size: 16px; display: inline;margin-left: 25px;cursor: pointer;"><%= users.ProfileName %></div>
              <div class="time" style="color: white;font-size: 16px; display: inline;margin-right: 15px;" ><%= post.Time %></div>    
@@ -85,6 +87,9 @@
              <% }) %>
      </div>
     </div>
+    <script>
+        const userIdSearched = "<%= actualUser._id %>";
+    </script>
 </body>
-<script src="/javascripts/trial.js"></script>
+<script src="/javascripts/socket.js"></script>
 </html>
