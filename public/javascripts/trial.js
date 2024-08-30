@@ -5,7 +5,6 @@ const userinfo = document.querySelector('.bellowNav');
 const likesCountFinal = document.querySelectorAll('.likesCountFinal');
 const likesCountFinalTwo = document.querySelectorAll('.likesCountFinalTwo');
 const userId = document.querySelector('#userId');
-console.log(userId);
 
 const moreAboutIcon = document.querySelector('.moreAbout');
 const mouseAbout = document.querySelector('.mouseAbout');

@@ -8,6 +8,7 @@
     <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
 </head>
 <body>
+    <audio id="notificationAudio" src="/audios/notifi.mp3"></audio>
     <div class="wrap">
         <div class="left">
             <div class="users">
@@ -17,7 +18,10 @@
                     </div>
                     <span><%= actualUser.ProfileName %></span>
                 </div>
-                <div class="chatedUsers">
+                <div class="otherFeatures">
+                    <div class="logout"><a href="/logout">Log Out</a></div>
+                    <div class="backProfile"><a href="/myprofile">My Profile</a></div>
+                    <div class="backMain"><a href="/main">Home</a></div>
                 </div>
             </div>
         </div>
@@ -29,29 +33,30 @@
                     </div>
                     <div style="display: flex; flex-direction: column;">
                     <div class="username"><span><%= searchedUser.ProfileName %></span></div>
-             <div id="<%= searchedUser._id %> status"></div>
-                   </div>
+                    <% if (searchedUser.isOnline == 1){ %>
+                        <div class="userStatus Online" id="<%= searchedUser._id %> status"><span>Online</span></div>
+                    <%} else{ %>
+                        <div class="userStatus Offline" id="<%= searchedUser._id %> status"><span>Offline</span></div>
+                 <% } %>
+                </div>
                     <div class="icons"></div>
                 </div>
                 <div class="allMessages">
                     <div class="wrapMessages">
-                        <!-- <div class="our-user-message"><span>Hello sir</span></div>
-                        <div class="distinct-user-message"> <span>hi madam,how can i help you?</span></div>
-                        <div class="our-user-message"><span>Hello sir</span></div>
-                        <div class="distinct-user-message"> <span>hi madam,how can i help you?</span></div> -->
+
                     </div>
                 </div>
                 <div class="sendMessage">
                     <form action="#" method="" id="formMsg">
-                       <input class="input" type="text" name="sendMsg" id="sendMsg" placeholder="Enter your Message">
+                       <input class="input" type="text" name="sendMsg" id="sendMsg" placeholder=" Message" autocomplete="off">
                        <input class="submit" type="submit" name="submitMsg" id="submitMsg" value="Send Message">
-                    </form>
+                    </form> 
                 </div>
             </div>
         </div>
     </div>
     <script>
-        const senderId = "<%= actualUser._id %>";
+        const senderId = "<%= actualUser._id %>"; 
         const receiverId = "<%= searchedUser._id %>";
         const senderSocket = "<%= actualUser.socketId %>";
         const receiverSocket = "<%= searchedUser.socketId %>";

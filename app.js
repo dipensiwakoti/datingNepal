@@ -355,33 +355,28 @@ const io = socket(server);
 
 
 app.get('/chat/:userId', isLoggedIn ,async (req,res)=>{
-  const userId = req.params.userIdAcualTest; //searched User
+  const userId = req.params.userId; //searched User id
   const actualUser = await userModel.findOne({email:req.user.email}); //loggedInUser
   const searchedUser = await userModel.findOne({_id:req.params.userId}); //searchedUser
-  
   res.render('chat',{actualUser:actualUser,searchedUser});
 })
 
-let lastimportantmessage = null ;
+// let lastimportantmessage = null ;
 
 io.on('connection',async (socket)=>{    
   console.log('A user Connected',socket.id);
   const userId = socket.handshake.auth.searched; // loggedInUser id
-  // const User =  await userModel.findOne({_id:userId});
-  // User.socketId = '';
-  // if(User.socketId ==''){
-  //   console.log("sockect cleared")
-  // }
 
-  if(lastimportantmessage){
-    socket.broadcast.emit('onlineStatus',{lastimportantmessage});
-  }
+  // if(lastimportantmessage){
+  //   socket.broadcast.emit('onlineStatus',{lastimportantmessage});
+  // }
   const updatedUser =  await userModel.findOneAndUpdate({_id:userId},{isOnline:'1',socketId:socket.id},{new:true});
   // console.log(updatedUser)
   await updatedUser.save();
-  lastimportantmessage = userId;
+  // lastimportantmessage = userId;
   socket.broadcast.emit('onlineStatus',{userId});
- socket.on('sendMessage',async function(data){
+
+  socket.on('sendMessage',async function(data){
   console.log('sendMessage doing ');
   console.log(data.receiverId);
   const userToReceive = await userModel.findOne({_id:data.receiverId});
@@ -401,6 +396,19 @@ io.on('connection',async (socket)=>{
    console.log('Message sent');
  })
 
+ socket.on('openingChat',async function(data){
+  console.log('Chat opening!');
+  console.log(data.senderId);
+  console.log(data.receiverIdUser);
+  const chats = await chatModel.find({
+    $or: [
+      { senderId: data.senderId, receiverId:data.receiverIdUser },
+      {  senderId: data.receiverIdUser , receiverId:data.senderId  }
+    ]
+  });
+   socket.emit('loadChats',{chats,senderId:data.senderId,receiverId:data.receiverIdUser});
+ })
+
   socket.on('disconnect',async function(){
     const updatedUser =  await userModel.findOneAndUpdate({_id:userId},{isOnline:'0'},{new:true});
     await updatedUser.save();
@@ -408,6 +416,7 @@ io.on('connection',async (socket)=>{
     console.log('made 0');
   })
 }); 
+
 app.post('/chatSave',async (req,res,next)=>{
   try{
   const message = req.body.message;
@@ -426,17 +435,6 @@ app.post('/chatSave',async (req,res,next)=>{
     res.status(400).send({success:false,msg:err.message});
   }
 })
-
-
-
-
-
-
-
-
-
-
-
 
 app.get('/like/:postId',isLoggedIn,async function (req, res) {
   const post = await postModel.findOne({_id:req.params.postId}).populate('user');

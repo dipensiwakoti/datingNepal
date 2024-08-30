@@ -47,7 +47,7 @@
             <div class="MF-wrap">
                 <div class="followers"><span>Followers:677</span></div>
                 <div class="views"><span>Views:1.5k</span></div>
-                <div class="chat"><span><a href="/chat/<%= users._id %>">Chat</a></span></div>
+                <div id="clickChatWhen" class="chat"><span><a href="/chat/<%= users._id %>">Chat</a></span></div>
             </div>
         </div>
         <div class="wrapBio">
@@ -89,6 +89,7 @@
     </div>
     <script>
         const senderId = "<%= actualUser._id %>";
+        const receiverIdUseR = "<%= users._id %>";
     </script>
 </body>
 <script src="/javascripts/socket.js"></script>
