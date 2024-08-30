@@ -38,6 +38,7 @@ const userSchema = mongoose.Schema({
     isOnline:{
         type: String , 
         default:'0',
-    }
+    },
+    socketId:String,
 })
  module.exports = mongoose.model('user', userSchema);   

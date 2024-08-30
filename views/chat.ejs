@@ -35,10 +35,10 @@
                 </div>
                 <div class="allMessages">
                     <div class="wrapMessages">
-                        <div class="our-user-message"><span>Hello sir</span></div>
+                        <!-- <div class="our-user-message"><span>Hello sir</span></div>
                         <div class="distinct-user-message"> <span>hi madam,how can i help you?</span></div>
                         <div class="our-user-message"><span>Hello sir</span></div>
-                        <div class="distinct-user-message"> <span>hi madam,how can i help you?</span></div>
+                        <div class="distinct-user-message"> <span>hi madam,how can i help you?</span></div> -->
                     </div>
                 </div>
                 <div class="sendMessage">
@@ -53,6 +53,8 @@
     <script>
         const senderId = "<%= actualUser._id %>";
         const receiverId = "<%= searchedUser._id %>";
+        const senderSocket = "<%= actualUser.socketId %>";
+        const receiverSocket = "<%= searchedUser.socketId %>";
     </script>
 </body>
 <script src="/javascripts/trial.js"></script>

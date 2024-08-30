@@ -14,7 +14,7 @@ socket.emit('userStatus',function(){
     }
   }
   catch{
-    console.log('Could proceed with searchUserId in socket.js');
+    console.log('Couldnt proceed with searchUserId in socket.js');
   }
 socket.on('onlineStatus',function(data){
     const idValue = `${data.userId} status`;
@@ -41,8 +41,8 @@ socket.on('offlineStatus',function(data){
 socket.emit('userStatus',function(){
   })
 
-var formMsg = document.querySelector('#formMsg');
-var msg = document.querySelector('#sendMsg');
+var formMsg = document.querySelector('#formMsg');  //gets up the formmm
+var msg = document.querySelector('#sendMsg'); // the msg input area  where msg.vlaue will give the msg
 formMsg.addEventListener('submit',(function(data){
   data.preventDefault();
   console.log(msg.value);
@@ -53,13 +53,13 @@ formMsg.addEventListener('submit',(function(data){
 };
   const xhr = new XMLHttpRequest();
   xhr.open('POST', '/chatSave', true);
-xhr.setRequestHeader('Content-Type', 'application/json');
+xhr.setRequestHeader('Content-Type', 'application/json');   //solves the error faced in the /chatSave route to parse the sent formData
 
 
-  xhr.onload = function() {
-    msg.value='';
+  xhr.onload = async function() {   //success weather true or false
       if (xhr.status === 200) {
           // If the server responds with success
+         await socket.emit('sendMessage',{senderId,receiverId,message: msg.value});
           msg.value= '';
           console.log('Form submitted successfully! Response: ' + xhr.responseText);
       } else {
@@ -76,3 +76,36 @@ xhr.setRequestHeader('Content-Type', 'application/json');
 })
  
 );
+var y=  document.querySelector('.wrapMessages');
+console.log(y);
+socket.on('private_message_distinct',function(data){
+  try{
+    const divElement = document.createElement('div');
+    const element = document.createElement('span');
+    element.innerText = data.message; 
+    divElement.classList.add('distinct-user-message');
+    divElement.appendChild(element);
+    y.appendChild(divElement);
+    console.log('senderSocketId:',data.from, 'and message:',data.message);
+  }
+  catch{
+    console.log('There is issue receiving the message!',Error);
+  }
+})    
+socket.on('private_message_ourside',function(data){
+  try{
+    const divElement = document.createElement('div');
+    const element = document.createElement('span');
+    element.innerText = data.message; 
+    divElement.classList.add('our-user-message');
+    divElement.appendChild(element);
+    y.appendChild(divElement);
+  }
+  catch{
+    console.log('There is issue sending the message!',Error);
+  }
+})    
+
+
+{/* <div class="our-user-message"><span>Hello sir</span></div>
+<div class="distinct-user-message"> <span>hi madam,how can i help you?</span></div> */}

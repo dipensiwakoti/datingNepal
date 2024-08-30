@@ -364,26 +364,52 @@ app.get('/chat/:userId', isLoggedIn ,async (req,res)=>{
 
 let lastimportantmessage = null ;
 
-io.on('connection',async (socket)=>{     
+io.on('connection',async (socket)=>{    
   console.log('A user Connected',socket.id);
   const userId = socket.handshake.auth.searched; // loggedInUser id
+  // const User =  await userModel.findOne({_id:userId});
+  // User.socketId = '';
+  // if(User.socketId ==''){
+  //   console.log("sockect cleared")
+  // }
+
   if(lastimportantmessage){
     socket.broadcast.emit('onlineStatus',{lastimportantmessage});
   }
-  const updatedUser =  await userModel.findOneAndUpdate({_id:userId},{isOnline:'1'},{new:true});
+  const updatedUser =  await userModel.findOneAndUpdate({_id:userId},{isOnline:'1',socketId:socket.id},{new:true});
+  // console.log(updatedUser)
   await updatedUser.save();
-   lastimportantmessage = userId;
+  lastimportantmessage = userId;
   socket.broadcast.emit('onlineStatus',{userId});
+ socket.on('sendMessage',async function(data){
+  console.log('sendMessage doing ');
+  console.log(data.receiverId);
+  const userToReceive = await userModel.findOne({_id:data.receiverId});
+  const userToSend = await userModel.findOne({_id:data.senderId});
+  console.log(userToSend);
+   const receiverSocket= userToReceive.socketId;
+   const senderSocket= userToSend.socketId;
+
+   io.to(receiverSocket).emit('private_message_distinct', {
+     from: senderSocket,
+     message: data.message,
+   });
+   socket.emit('private_message_ourside',{
+    message:data.message,
+    from:senderSocket,
+   })
+   console.log('Message sent');
+ })
 
   socket.on('disconnect',async function(){
-    await userModel.findOneAndUpdate({_id:userId},{isOnline:'0'},{new:true});
+    const updatedUser =  await userModel.findOneAndUpdate({_id:userId},{isOnline:'0'},{new:true});
     await updatedUser.save();
     socket.broadcast.emit('offlineStatus',{userId});
     console.log('made 0');
   })
 }); 
-
-app.post('/chatSave',async (req,res)=>{
+app.post('/chatSave',async (req,res,next)=>{
+  try{
   const message = req.body.message;
   const senderId = req.body.senderId;
   const receiverId = req.body.receiverId;
@@ -392,8 +418,13 @@ app.post('/chatSave',async (req,res)=>{
     senderId,
     receiverId,
   });
-  await chat.save();
-  res.send('Message Inserted!');
+  const savedChat =  await chat.save();
+  res.status(200).send({success:true,savedChat:savedChat,msg:'Chat inserted sucessfully!',},);  //doesnt reload the page as its xrl request and served for this purpose only!
+  next();
+}
+  catch{
+    res.status(400).send({success:false,msg:err.message});
+  }
 })
 
 
