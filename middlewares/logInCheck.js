@@ -1,14 +1,17 @@
-const { model } = require("mongoose");
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
 
 module.exports =function isLoggedIn(req,res,next){
    const cookie = req.cookies.token;
    if(cookie === ""){
-     res.redirect('/');
+     res.redirect('/login');
    } else{
-     
-   const data = jwt.verify(cookie, 'shhh');
-   req.user = data ;
-   next();
+    try{
+      const data = jwt.verify(cookie, 'shhh');
+      req.user = data ;
+      next();
+    }
+    catch(error){
+      console.log('Error during JWT verification !',error);
+    }
    }
 }

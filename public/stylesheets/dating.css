@@ -1,9 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&family=Rubik:ital@1&display=swap");
-/* font-family: 'Montserrat', sans-serif;
-font-family: 'Rubik', sans-serif; */
 * {
   margin: 0;
   padding: 0;
+}
+body{
+  overflow-x: hidden;
 }
 header {
   background-color: rgb(25, 48, 222);
@@ -199,7 +200,7 @@ body {
 .creative {
   width: 100vw;
   height: max-content;
-  background-color: black;
+  background-color: rgb(255, 254, 254);
 }
 .top {
   height: 304px;
@@ -252,4 +253,197 @@ body {
 .TT-Combine {
   display: flex;
   flex-direction: column;
+}
+.introduction {
+  width: 100vw;
+  height: 36vh;
+  background: #FFFFFF;
+  display: flex;
+}
+.top-intro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+  width: 100vw;
+  line-height: 70px;
+  color: rgb(50, 130, 90);
+  font-weight: 700;
+  font-size: 40px;
+  padding: 30px;
+}
+
+.down-intro {
+  width: 28vw;
+  margin-left:35vw;
+  display: flex;
+  margin-top: 20px;
+  font-family: SuisseIntl, sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 27.5px;
+  color: rgb(40, 40, 40);
+}
+.join-us {
+  position: relative;
+  height: 76px;
+  width: 196px;
+  top: 138px;
+  margin-left: -572px;
+}
+.join-us img{
+  width: 100%;
+  height: 100%;
+}
+.compability {
+  width: 100vw;
+  height: 57vh;
+  background: #FFFFFF;
+}
+.text {
+  height: 80px;
+  width: 80vw;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 60px;
+  color: rgb(50, 130, 90);
+  font-weight: 700;
+  font-size: 60px;
+  padding: 30px;
+}
+.textLeft {
+  width: 20vw;
+  margin-left: 564px;
+  display: inline-block;
+  margin-top: 73px;
+  font-family: SuisseIntl, sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 27.5px;
+  color: rgb(40, 40, 40);
+}
+.logoWrap {
+  width: 438px;
+  height: 287px;
+  margin-top: 10px;
+  margin-left: 43px;
+}
+.logoWrap img {
+    width: 100%;
+    height: 100%;
+}
+.WeAre {
+    height: 52vh;
+    background: #286F96;
+}
+.topWeAre {
+  display: flex;
+  justify-content: center;
+  line-height: 40px;
+  color: rgb(255, 250, 245);
+  font-weight: 700;
+  font-size: 60px;
+  padding: 30px;
+  padding-top: 60px;
+}
+.midWeAre {
+  display: flex;
+  justify-content: center;
+  line-height: 31.5px;
+  color:  rgb(255, 250, 245);
+  font-weight: 400;
+  font-size: 28px;
+  padding: 15px;
+  width: 43vw;
+  margin: auto;
+}
+.downWeAre {
+  display: flex;
+  justify-content: center;
+  line-height: 27.5px;
+  color:  rgb(255, 250, 245);
+  font-weight: 500;
+  font-size: 29.5px;
+  padding: 15px;
+  width: 43vw;
+  margin: auto;
+}
+.btnContactUs{
+  font-weight: 700;
+  padding: 12px 25px;
+  background: #286F96;
+  border: none;
+  border-radius: 16px;
+  border: 3px solid white;
+  color: white;
+  cursor: pointer;
+}
+.btnContactUs:hover{
+  background-color: #3c85acdd;
+}
+.user-profiles{
+  width: 100vw;
+  height: 47vh;
+  background-color: white;
+}
+.top-user-profiles span{
+  line-height: 60px;
+  color: rgb(50, 130, 90);
+  font-weight: 700;
+  font-size: 60px;
+  padding: 30px;
+}
+.top-user-profiles{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+}
+.usersAll {
+  width: 80vw;
+  margin: auto;
+  /* background: #c9b0b0; */
+  height: 64%;
+  display: flex;
+  justify-content: center;
+  gap: 300px;
+  padding: 16px;
+}
+.useR .img {
+  width: 133px;
+  height: 133px;
+  object-fit: cover;
+  border-radius: 100%;
+  overflow: hidden;
+}
+.useR img{
+    width: 100%;
+    height: 100%;
+}
+.userName {
+  margin-top: 30px;
+  font-weight: 600;
+  margin-left: 10px;
+  font-size: 27px;
+}
+.subscribeLogo {
+  width: 100vw;
+  height: 20vh;
+  display: flex;
+  margin-top: -61px;
+  justify-content: center;
+  object-fit: cover;
+  overflow: hidden;
+  background: white;
+}
+.SLWrap {
+  width: 358px;
+  height: 168px;
+  margin-top: 0px;
+}
+.subscribeLogo img{
+  width: 100%;
+  height: 100%;
 }

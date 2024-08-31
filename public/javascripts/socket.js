@@ -7,14 +7,10 @@ try{
   var y=  document.querySelector('.wrapMessages');
   console.log(y);
 }
-catch{
-  console.log('could get .wrapmessages');
+catch(error){
+  console.log('could get .wrapmessages',error);
 } 
-
 const username = document.querySelector('.username ');
-if(username){
-  console.log(username); 
-}
 console.log('Logged In User',senderId);
 try{
   username.addEventListener('click',()=>{
@@ -22,8 +18,8 @@ try{
   })
   username.click();
 }
-catch{
-  console.log('not in the chat route!');
+catch(error){
+  console.log('not in the chat route!',error);
 }
 
 socket.on('loadChats', function(e) {
@@ -70,8 +66,8 @@ socket.on('onlineStatus',function(data){
       z.appendChild(element);
   });
 }
-catch{
-  console.log('couldnt show user status!');
+catch(error){
+  console.log('couldnt show user status!',error);
 }
 socket.on('offlineStatus',function(data){
     const idValue = `${data.userId} status`;
@@ -123,14 +119,11 @@ xhr.setRequestHeader('Content-Type', 'application/json');   //solves the error f
 })
  
 );}
-catch{
-  console.log('Error getting message form datas!')
+catch(error){
+  console.log('Error getting message form datas!',error)
 }
-// var y=  document.querySelector('.wrapMessages');
-// console.log(y);
         
 var audio = document.getElementById("notificationAudio");
-console.log(audio);
 socket.on('private_message_distinct',function(data){
   try{
     const divElement = document.createElement('div');

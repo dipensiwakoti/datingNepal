@@ -24,11 +24,113 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.static(path.join(__dirname,'public')));
 app.use(cookieParser());
 
-app.get('/',(req,res)=> {
+app.get('/login',(req,res)=> {
     res.render("losi",{flag:true, result:true,});
 })
-app.get('/test',(req,res)=> {
-    res.render("dating");
+app.post('/login',async (req,res)=> {
+  let{email,password}= req.body ;
+  let user =await userModel.findOne({email});
+  let allUser =await userModel.find();
+  if(user){
+      const hash = user.password ;
+      bcrypt.compare(password,hash,function(err,result){
+          if(result==true){
+          const token = jwt.sign({email:email,user_id:user._id},"shhh");
+          res.cookie("token",token);
+          res.cookie("PhNumber",'');
+          res.cookie("BioContent",'');
+          res.cookie("ProfileName",'');
+          const result= true ;
+          res.redirect('/main');
+            }
+          else{
+              const result = false ;
+              const flag = true;
+              res.render('losi',{result:result,flag});
+          }
+      })
+}
+else {
+  const result = false ;
+  const flag = true;
+  res.render('losi',{result:result,flag}); 
+}
+
+})
+app.post('/signup',async (req,res)=> {
+  let{fullName,email,password}= req.body ;
+  let user =await userModel.findOne({email});
+  let allUser =await userModel.find();
+  if(!user){
+  bcrypt.genSalt(10, function(err,salt){
+   bcrypt.hash(password,salt,async function(err,hash){
+      let createdUser =await userModel.create({
+          Name : fullName,
+          email:email,
+          password: hash,
+      })
+      const token = jwt.sign({email:email,user_id:createdUser._id},"shhh");
+      res.cookie("token",token);
+      res.cookie("PhNumber",'');
+      res.cookie("BioContent",'');
+      res.cookie("ProfileName",'');
+      const flag = true ;
+      res.redirect('/main');
+   })
+  })
+}
+else {
+  const flag = false ;
+  const result=true;
+  res.render('losi',{flag,result});
+}
+
+})
+app.get('/logout',isLoggedIn,(req,res)=> {
+  res.cookie("token",'');
+  res.cookie("PhNumber",'');
+  res.cookie("BioContent",'');
+  res.cookie("ProfileName",'');
+  res.redirect('/login');
+})
+app.get('/main',isLoggedIn,async (req,res)=> {
+  const usersss = await userModel.findOne({email:req.user.email});
+  console.log(usersss._id)
+    res.render("test",{usersss});
+})
+app.post('/searchuser', isLoggedIn,async (req,res)=>{
+  const{search}= req.body;
+  const emailUser = req.user.email;
+  const updatedUser = await userModel.findOne({ProfileName:search});
+  const actualUser = await userModel.findOne({email:req.user.email});
+  if(updatedUser){
+      const name=updatedUser.Name;
+      const age=updatedUser.Age;
+      const email=updatedUser.email;
+      const lookingFor=updatedUser.LookingFor;
+      const profileName=updatedUser.ProfileName;
+      const relationship=updatedUser.RelationshipStatus;
+      const favSong=updatedUser.FavSong;
+      const gender=updatedUser.Gender;
+      const phNumber=updatedUser.PhNumber;
+      const hobby=updatedUser.Hobby;
+      const religion=updatedUser.Religion;
+      const BioContent = updatedUser.BioContent;
+      const QuoteContent = updatedUser.QuoteContent;
+      const education=updatedUser.Educaion;
+      const profilePic = updatedUser.profilepic;
+      const users = await userModel.findOne({email}).populate('posts');
+          if(email==emailUser){
+              res.redirect('/myprofile');
+          }
+          else{
+          res.render("userProfile",{name,lookingFor,profileName,gender,hobby,religion,favSong,relationship,age,education,BioContent,QuoteContent,profilePic,phNumber,users,actualUser});
+           }
+      }
+
+  else{
+      res.send("User with the name is not found!")
+  }
 })
 app.get('/myprofile',isLoggedIn,async (req,res)=> {
     const email = req.user.email;
@@ -109,77 +211,6 @@ app.get('/editprofile',isLoggedIn,async (req,res)=> {
 
     res.render("editprofile",{profileName,age,phNumber,favSong,bioContent,quoteContent,profilepass,usersss});      
 })
-app.get('/main',isLoggedIn,async (req,res)=> {
-  const usersss = await userModel.findOne({email:req.user.email});
-  console.log(usersss._id)
-    res.render("test",{usersss});
-})
-app.get('/logout',isLoggedIn,(req,res)=> {
-    res.cookie("token",'');
-    res.cookie("PhNumber",'');
-    res.cookie("BioContent",'');
-    res.cookie("ProfileName",'');
-    res.redirect('/');
-})
-app.post('/signup',async (req,res)=> {
-    let{fullName,email,password}= req.body ;
-    let user =await userModel.findOne({email});
-    let allUser =await userModel.find();
-    if(!user){
-    bcrypt.genSalt(10, function(err,salt){
-     bcrypt.hash(password,salt,async function(err,hash){
-        let createdUser =await userModel.create({
-            Name : fullName,
-            email:email,
-            password: hash,
-        })
-        const token = jwt.sign({email:email,user_id:createdUser._id},"shhh");
-        res.cookie("token",token);
-        res.cookie("PhNumber",'');
-        res.cookie("BioContent",'');
-        res.cookie("ProfileName",'');
-        const flag = true ;
-        res.redirect('/main');
-     })
-    })
-}
-  else {
-    const flag = false ;
-    const result=true;
-    res.render('losi',{flag,result});
-  }
-
-})
-app.post('/login',async (req,res)=> {
-    let{email,password}= req.body ;
-    let user =await userModel.findOne({email});
-    let allUser =await userModel.find();
-    if(user){
-        const hash = user.password ;
-        bcrypt.compare(password,hash,function(err,result){
-            if(result==true){
-            const token = jwt.sign({email:email,user_id:user._id},"shhh");
-            res.cookie("token",token);
-            res.cookie("PhNumber",'');
-            res.cookie("BioContent",'');
-            res.cookie("ProfileName",'');
-            const result= true ;
-            res.redirect('/main');
-              }
-            else{
-                const result = false ;
-                const flag = true;
-                res.render('losi',{result:result,flag});
-            }
-        })
-}
-  else {
-    const result = false ;
-    const flag = true;
-    res.render('losi',{result:result,flag}); 
- }
-
-})
 app.post('/main', isLoggedIn, async (req, res) => {
     let { name, age, relationship, education, lookingFor } = req.body;
     let email = req.user.email;
@@ -249,40 +280,6 @@ app.post('/thirdForm', isLoggedIn,async (req,res)=>{
 
     }
 })
-app.post('/searchuser', isLoggedIn,async (req,res)=>{
-    const{search}= req.body;
-    const emailUser = req.user.email;
-    const updatedUser = await userModel.findOne({ProfileName:search});
-    const actualUser = await userModel.findOne({email:req.user.email});
-    if(updatedUser){
-        const name=updatedUser.Name;
-        const age=updatedUser.Age;
-        const email=updatedUser.email;
-        const lookingFor=updatedUser.LookingFor;
-        const profileName=updatedUser.ProfileName;
-        const relationship=updatedUser.RelationshipStatus;
-        const favSong=updatedUser.FavSong;
-        const gender=updatedUser.Gender;
-        const phNumber=updatedUser.PhNumber;
-        const hobby=updatedUser.Hobby;
-        const religion=updatedUser.Religion;
-        const BioContent = updatedUser.BioContent;
-        const QuoteContent = updatedUser.QuoteContent;
-        const education=updatedUser.Educaion;
-        const profilePic = updatedUser.profilepic;
-        const users = await userModel.findOne({email}).populate('posts');
-            if(email==emailUser){
-                res.redirect('/myprofile');
-            }
-            else{
-            res.render("userProfile",{name,lookingFor,profileName,gender,hobby,religion,favSong,relationship,age,education,BioContent,QuoteContent,profilePic,phNumber,users,actualUser});
-             }
-        }
-
-    else{
-        res.send("User with the name is not found!")
-    }
-})
 app.get('/uploadprofile',isLoggedIn,(req,res)=>{
     res.render('uploadprofile');
 })
@@ -328,24 +325,25 @@ app.post('/createPost',isLoggedIn,async function (req, res) {
      await users.save();
      res.redirect('/myprofile')
   })
+  app.get('/edit/:postId',isLoggedIn,async function (req, res) {
+    email = req.user.email ;
+    const post = await postModel.findOne({_id:req.params.postId});
+    const usersss = await userModel.findOne({email});
+    const prevContent = post.Text;
+    res.render('editPost',{id:req.params.postId,prevContent,usersss});
+  })
+  app.post('/edit',isLoggedIn,async function (req, res) {
+      let{newContent} =req.body ; 
+      const id = req.body.id ;
+      
+      const editedPost =await postModel.findOneAndUpdate({_id:id},{Text:newContent});
+      res.redirect('/myprofile');
+  })
 app.get('/delete/:postId',isLoggedIn,async function (req, res) {
   const deletedPost =await postModel.findOneAndDelete({_id:req.params.postId});
   res.redirect('/myprofile');
 })
-app.get('/edit/:postId',isLoggedIn,async function (req, res) {
-  email = req.user.email ;
-  const post = await postModel.findOne({_id:req.params.postId});
-  const usersss = await userModel.findOne({email});
-  const prevContent = post.Text;
-  res.render('editPost',{id:req.params.postId,prevContent,usersss});
-})
-app.post('/edit',isLoggedIn,async function (req, res) {
-    let{newContent} =req.body ; 
-    const id = req.body.id ;
-    
-    const editedPost =await postModel.findOneAndUpdate({_id:id},{Text:newContent});
-    res.redirect('/myprofile');
-})
+
 
 const socket = require('socket.io');
 const http = require('http');

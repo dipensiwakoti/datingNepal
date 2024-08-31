@@ -51,7 +51,7 @@ userinfo.addEventListener("click",()=>{
         moreAboutContent.style.display= 'none';
  });
  likesCountFinalTwo.forEach(function(post){
-     console.log(post)
+     console.log('liked or disliked')
     post.addEventListener('click',()=>{
         setTimeout(function(){
                window.location.reload();
@@ -59,6 +59,7 @@ userinfo.addEventListener("click",()=>{
        });
     })
  likesCountFinal.forEach(function(postLike){
+    console.log('liked or disliked')
     postLike.addEventListener('click',()=>{
         setTimeout(function(){
                window.location.reload();

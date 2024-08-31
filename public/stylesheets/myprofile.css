@@ -177,6 +177,14 @@ body{
     top: 19px;
 
 }
+.break-below-post {
+    width: 94vw;
+    margin: auto;
+    height: 0.08px;
+    background-color: rgb(87 83 83 / 31%);
+    position: relative;
+    top: 19px;
+}
 .multiFeature{
         display: flex;
         flex-direction: row;
