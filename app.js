@@ -283,6 +283,10 @@ app.post('/thirdForm', isLoggedIn,async (req,res)=>{
 app.get('/uploadprofile',isLoggedIn,(req,res)=>{
     res.render('uploadprofile');
 })
+app.get('/mychats',isLoggedIn,async (req,res)=>{
+  const actualUser = await userModel.findOne({email:req.user.email}).populate('chatFriends'); //loggedInUser
+  res.render('mychats',{actualUser:actualUser,});
+})
 app.post('/upload', upload.single('file'), isLoggedIn, async function (req, res) {
      const email =req.user.email ;
      const user = await userModel.findOne({email});
@@ -378,8 +382,13 @@ io.on('connection',async (socket)=>{
   console.log('sendMessage doing ');
   console.log(data.receiverId);
   const userToReceive = await userModel.findOne({_id:data.receiverId});
-  const userToSend = await userModel.findOne({_id:data.senderId});
-  console.log(userToSend);
+  const userToSend = await userModel.findOne({_id:data.senderId}); //logged in user
+
+  if(userToSend.chatFriends.indexOf(data.receiverId)=== -1){ //push if only the user is first time being chatted
+  userToSend.chatFriends.push(data.receiverId); // saving that this person chatted with the loggedin user
+  await userToSend.save();
+   }
+
    const receiverSocket= userToReceive.socketId;
    const senderSocket= userToSend.socketId;
 
@@ -396,15 +405,16 @@ io.on('connection',async (socket)=>{
 
  socket.on('openingChat',async function(data){
   console.log('Chat opening!');
-  console.log(data.senderId);
-  console.log(data.receiverIdUser);
+  const receiverData = await userModel.findOne({_id:data.receiverIdUser});
+  const profileName = receiverData.ProfileName ; 
+  const profilePic = receiverData.profilepic ; 
   const chats = await chatModel.find({
     $or: [
       { senderId: data.senderId, receiverId:data.receiverIdUser },
       {  senderId: data.receiverIdUser , receiverId:data.senderId  }
     ]
   });
-   socket.emit('loadChats',{chats,senderId:data.senderId,receiverId:data.receiverIdUser});
+   socket.emit('loadChats',{chats,senderId:data.senderId,receiverId:data.receiverIdUser,profileName,profilePic});
  })
 
   socket.on('disconnect',async function(){

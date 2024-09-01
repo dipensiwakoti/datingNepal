@@ -10,6 +10,19 @@ try{
 catch(error){
   console.log('could get .wrapmessages',error);
 } 
+try{
+  var chatUsers=  document.querySelectorAll('.chatUser');
+  console.log(chatUsers);
+  chatUsers.forEach((chatUser)=>{
+    const chatUserId = chatUser.id;
+    chatUser.addEventListener('click',()=>{
+    socket.emit('openingChat',{senderId,receiverIdUser:chatUserId});
+    })
+  })
+}
+catch(error){
+  console.log('could get .chatUser',error);
+} 
 const username = document.querySelector('.username ');
 console.log('Logged In User',senderId);
 try{
@@ -24,11 +37,21 @@ catch(error){
 
 socket.on('loadChats', function(e) {
   let i;
-  console.log('Loading Chats');
+  const middleChat = document.querySelector('.topMiddleChat');
+  console.log('Loading Chats'); 
   const chats = e.chats;
-  console.log(e);
+  const profileName = e.profileName;
+  const profilePic = e.profilePic;
+  middleChat.innerHTML = '';
+  middleChat.innerHTML = `                    <div class="img">
+                        <img src="/images/profilePictures/${profilePic}" alt="Not found!">
+                    </div>
+                    <div style="display: flex; flex-direction: column;">
+                    <div class="username"><span>${profileName}</span></div>`;
+
   console.log(chats.length);
   var z =  document.querySelector('.wrapMessages');
+  z.innerText='';
   for(i=0;i<chats.length;i++){
     let addClass = '';
     if(chats[i].senderId == senderId){

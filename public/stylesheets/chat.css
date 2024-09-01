@@ -2,12 +2,12 @@
     display: flex;
 }
 body{
-    margin: -8px;
     overflow: hidden;
+    margin: 0px;
 }
 .left {
     height: 100vh;
-    width: 19vw;
+    min-width: 19vw;
     background: rgb(160 171 168);  
     display: flex;
 }
@@ -19,6 +19,7 @@ body{
 }
 .users {
     padding: 43px;
+    height: 100vh;
 }
 .users span {
         min-width: max-content;
@@ -158,12 +159,13 @@ margin-right: 15px;
     margin-top: 200px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     gap: 43px;
     bottom: 99px;
-    position: absolute;
-    margin-left: 52px;
+    position: relative;
+    width: 94%;
+    height: 69%;
 }
 .otherFeatures a {
     text-decoration: none;
@@ -177,3 +179,91 @@ margin-right: 15px;
 .otherFeatures .backProfile a{
     color: rgb(61, 57, 57);
 }
+.otherFeatures .backProfile {
+    color: rgb(61, 57, 57);
+    width: 80%;
+    height: 51px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 14px;
+}
+.otherFeatures .backMain {
+    color: rgb(21, 62, 226);
+    width: 80%;
+    height: 51px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 14px;
+}
+.otherFeatures .logout {
+    color: rgb(209, 39, 39);
+    width: 80%;
+    height: 51px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 14px;
+}
+.otherFeatures .logout:hover{
+    background-color: rgba(128, 128, 128, 0.499);
+}
+.otherFeatures .backProfile:hover{
+    background-color: rgba(128, 128, 128, 0.499);
+}
+.otherFeatures .backMain:hover{
+    background-color: rgba(128, 128, 128, 0.499);
+}
+
+.allUsers {
+    height: 659px;
+    width: 337px;
+    z-index: 999;
+    position: relative;
+    margin-left: -22px;
+    overflow-y: auto;
+}
+.chatUser{
+    display: flex;
+    margin-bottom: 12px;
+    cursor: pointer;
+
+}
+ .usernameChat-user{
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+}
+.allUsers img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+}
+.allUsers .img {
+    width: 61px;
+    height: 61px;
+    border-radius: 100%;
+    margin-bottom: 40px;
+    object-fit: cover;
+    overflow: hidden;
+    top: 16px;
+    position: relative;
+    margin-right: 15px;
+    margin-left: 0px;
+}
+.otherFeatures-mychats{
+    margin-top: 20px;
+    position: relative;
+    width: 94%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+}
+.backProfile-mychats {
+    padding: 10px 21px;
+    background: blue;
+    border-radius: 7.7px;
+    font-weight: 600;
+}
+

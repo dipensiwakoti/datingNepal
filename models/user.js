@@ -40,5 +40,9 @@ const userSchema = mongoose.Schema({
         default:'0',
     },
     socketId:String,
+    chatFriends:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'user',
+    }]
 })
  module.exports = mongoose.model('user', userSchema);   
