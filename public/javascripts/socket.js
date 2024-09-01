@@ -44,11 +44,12 @@ socket.on('loadChats', function(e) {
   const profilePic = e.profilePic;
   middleChat.innerHTML = '';
   middleChat.innerHTML = `                    <div class="img">
-                        <img src="/images/profilePictures/${profilePic}" alt="Not found!">
-                    </div>
-                    <div style="display: flex; flex-direction: column;">
-                    <div class="username"><span>${profileName}</span></div>`;
-
+  <img src="/images/profilePictures/${profilePic}" alt="Not found!">
+  </div>
+  <div style="display: flex; flex-direction: column;">
+  <div class="username"><span>${profileName}</span></div>`;
+  
+  if(chats.length>0){
   console.log(chats.length);
   var z =  document.querySelector('.wrapMessages');
   z.innerText='';
@@ -70,6 +71,18 @@ socket.on('loadChats', function(e) {
     scrollToBottom();
   }
   const y=  document.querySelector('.wrapMessages');
+}
+else{
+  var z =  document.querySelector('.wrapMessages');
+  z.innerText='';
+  const divElement = document.createElement('div');
+  const element = document.createElement('span');
+  element.innerText= `Start Chat Now !`;
+  divElement.classList.add(`our-user-message`);
+  element.style.background = 'white';
+  divElement.appendChild(element);
+  z.appendChild(divElement);
+}
 });
 
 socket.emit('userStatus',function(){

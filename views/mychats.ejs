@@ -19,14 +19,21 @@
                     <span><%= actualUser.ProfileName %></span>
                 </div>
                 <div class="allUsers">
-                    <h3 style="margin-left:100px;">Chats</h3>
+                    <h3 style="margin-left:100px;font-size: 34px;">Chats</h3>
+                    <% if(actualUser.chatFriends.length>0) { %>
                     <% actualUser.chatFriends.forEach(function(chatUser){ %>
-
+                        
                         <div class="chatUser" id="<%= chatUser._id %>">
                             <div class="img"><img src="/images/profilePictures/<%= chatUser.profilepic %>" alt="error loading!"></div>
                             <div class="usernameChat-user"><%= chatUser.ProfileName %></div>
                         </div>
-                 <%  }) %>
+                   <%  }) %>
+                 <%}else { %>
+                    <div>
+                        <div style="display: flex; justify-content: center; align-items: center;" class="usernameChat-user"><span>No chats to display</span></div>
+                    </div>
+                    <%  } %>
+
                 </div>
                 <div class="otherFeatures-mychats">
                     <div class="backProfile-mychats"><a  style="color: black;text-decoration: none; font-size: medium;" href="/myprofile">Back</a></div>

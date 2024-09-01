@@ -54,7 +54,7 @@ userinfo.addEventListener("click",()=>{
      console.log('liked or disliked')
     post.addEventListener('click',()=>{
         setTimeout(function(){
-               window.location.reload();
+            location.reload();
         },10);
        });
     })

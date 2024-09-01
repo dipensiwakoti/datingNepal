@@ -56,10 +56,10 @@ body{
 .topMiddleChat {
     height: 100px;
     width: 100%;
-    background-color: antiquewhite;
+    background-color: #b0b0b899;
     display: flex;
     align-items: center;
-}
+  }
 .allMessages {
     height: 724px;
     width: 96%;
@@ -156,12 +156,12 @@ margin-right: 15px;
 }
 
 .otherFeatures {
-    margin-top: 200px;
+    margin-top: 150px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    gap: 43px;
+    gap: 34px;
     bottom: 99px;
     position: relative;
     width: 94%;
@@ -169,6 +169,8 @@ margin-right: 15px;
 }
 .otherFeatures a {
     text-decoration: none;
+    font-weight: 700;
+    font-size: 21.4px;
 }
 .otherFeatures .logout a{
     color: rgb(209, 39, 39);
@@ -196,6 +198,8 @@ margin-right: 15px;
     justify-content: center;
     align-items: center;
     border-radius: 14px;
+    font-family: 600;
+
 }
 .otherFeatures .logout {
     color: rgb(209, 39, 39);
@@ -223,12 +227,19 @@ margin-right: 15px;
     position: relative;
     margin-left: -22px;
     overflow-y: auto;
+    background: #8d8d8d;
+    padding: 5px;
+    border-radius: 16px;
 }
-.chatUser{
+.chatUser {
     display: flex;
     margin-bottom: 12px;
     cursor: pointer;
-
+    background: #a1a1a1a3;
+    border-radius: 14px;
+}
+.chatUser:hover{
+    background: #a1a1a1e7;
 }
  .usernameChat-user{
     font-size: 22px;
