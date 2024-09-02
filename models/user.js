@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://DipenSiwakoti:datingnepalDN@dating-nepal.sycsg.mongodb.net/?retryWrites=true&w=majority&appName=Dating-Nepal')
+mongoose.connect('mongodb+srv://DatingNepalTwo:DatingNepalTwoAgain@dating-nepal-test.b9ajo.mongodb.net/?retryWrites=true&w=majority&appName=Dating-Nepal-Test')
 .then('Database connected Succesfully!')
 .catch('Failed during database connection')
 
