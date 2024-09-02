@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1:27017/datingChannel');
+mongoose.connect('mongodb+srv://DipenSiwakoti:datingnepalDN@dating-nepal.sycsg.mongodb.net/?retryWrites=true&w=majority&appName=Dating-Nepal')
+.then('Database connected Succesfully!')
+.catch('Failed during database connection')
+
 const userSchema = mongoose.Schema({
     Name : String,
     ProfileName : String,
@@ -45,4 +48,5 @@ const userSchema = mongoose.Schema({
         ref:'user',
     }]
 })
- module.exports = mongoose.model('user', userSchema);   
+ 
+module.exports = mongoose.model('user', userSchema);   
