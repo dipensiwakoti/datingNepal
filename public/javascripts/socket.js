@@ -27,10 +27,17 @@ const username = document.querySelector('.username ');
 console.log('Logged In User',senderId);
 try{
   username.addEventListener('click',()=>{
-    socket.emit('openingChat',{senderId,receiverIdUser:receiverId});
+    setTimeout(() => {
+      socket.emit('openingChat',{senderId,receiverIdUser:receiverId});
+      console.log('clickdddd')
+    }, 500);                                                                //poor server dude, the event sent beofore the connection is actually made in the backend, so the event is senseless in this way
   })
-  username.click();
-}
+  const event = new MouseEvent('click', {
+    bubbles: true,
+    cancelable: true,
+    view: window
+  });
+  username.dispatchEvent(event);  }
 catch(error){
   console.log('not in the chat route!',error);
 }
@@ -84,9 +91,10 @@ else{
   z.appendChild(divElement);
 }
 });
-
-socket.emit('userStatus',function(){
-  })
+setTimeout(() => {
+  socket.emit('userStatus',function(){
+    })
+}, 50);
 
   try{
 socket.on('onlineStatus',function(data){
