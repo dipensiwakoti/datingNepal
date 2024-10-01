@@ -203,81 +203,86 @@ body {
   background-color: rgb(255, 254, 254);
 }
 .top {
-  height: 304px;
+  height: fit-content;
   width: 100vw;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 2vh;
 }
 .firstTop {
-  width: 281px;
-  height: 110px;
+  width: fit-content;
+  height: fit-content;
   position: relative;
-  object-fit: contain;
-  margin-left: 230px;
-  top: 40px;
-}
-.firstTop img {
-  width: 100%;
-  height: 100%;
+  top: 49px;
+  margin: auto;
 }
 .FT-Combine {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
-.secondTop {
+.firstTop img {
   width: 281px;
   height: 110px;
-  position: relative;
-  object-fit: contain;
-  margin-left: 825px;
-  top: -74px;
 }
-.secondTop img {
-  width: 100%;
-  height: 100%;
+.secondTop {
+  width: fit-content;
+  height: fit-content;
+  position: relative;
+  margin: auto;
+  margin-top: 81px;
 }
 .ST-Combine {
   display: flex;
   flex-direction: column;
 }
-.thirdTop {
+.secondTop img {
   width: 281px;
-  height: 110px;
-  position: relative;
-  object-fit: contain;
-  margin-left: 1450px;
-  top: -180px;
+  height: 88px;
 }
-.thirdTop img {
-  width: 100%;
-  height: 100%;
+.thirdTop {
+  width: fit-content;
+  height: fit-content;
+  position: relative;
+  margin: auto;
+  margin-top: 70px;
 }
 .TT-Combine {
   display: flex;
   flex-direction: column;
 }
+.thirdTop img {
+  width: 281px;
+  height: 88px;
+}
 .introduction {
   width: 100vw;
-  height: 36vh;
+  height: fit-content;
   background: #FFFFFF;
   display: flex;
+  padding: 20px;
+  flex-wrap: wrap;
 }
 .top-intro {
   display: flex;
   justify-content: center;
   align-items: center;
   height: fit-content;
-  width: 100vw;
-  line-height: 70px;
+  width: 88vw;
+  line-height: 43px;
   color: rgb(50, 130, 90);
   font-weight: 700;
   font-size: 40px;
   padding: 30px;
+  margin-top: 52px;
 }
 
 .down-intro {
-  width: 28vw;
-  margin-left:35vw;
+  height: fit-content;
+  width: 20em;
   display: flex;
-  margin-top: 20px;
+  margin: auto;
   font-family: SuisseIntl, sans-serif;
   font-size: 22px;
   font-weight: 400;
@@ -285,11 +290,11 @@ body {
   color: rgb(40, 40, 40);
 }
 .join-us {
-  position: relative;
-  height: 76px;
-  width: 196px;
-  top: 138px;
-  margin-left: -572px;
+  height: 93px;
+  width: 11em;
+  background: #0dff00;
+  margin: auto;
+  margin-top: 30px;
 }
 .join-us img{
   width: 100%;
@@ -297,73 +302,76 @@ body {
 }
 .compability {
   width: 100vw;
-  height: 57vh;
+  height: fit-content;
   background: #FFFFFF;
+  padding: 30px;
 }
 .text {
-  height: 80px;
-  width: 80vw;
+  height: 120px;
+  width: 70vw;
   margin: auto;
+  margin-top: 52px;
   display: flex;
   justify-content: center;
   align-items: center;
   line-height: 60px;
   color: rgb(50, 130, 90);
   font-weight: 700;
-  font-size: 60px;
-  padding: 30px;
+  font-size: 49px;
+
 }
 .textLeft {
-  width: 20vw;
-  margin-left: 564px;
+  width: 80vw;
   display: inline-block;
-  margin-top: 73px;
   font-family: SuisseIntl, sans-serif;
   font-size: 22px;
   font-weight: 400;
   line-height: 27.5px;
   color: rgb(40, 40, 40);
+  margin: auto;
 }
 .logoWrap {
   width: 438px;
   height: 287px;
-  margin-top: 10px;
-  margin-left: 43px;
+  margin-top: 61px;
+  margin-left: -10px;
+  margin-bottom: 52px;
 }
 .logoWrap img {
     width: 100%;
     height: 100%;
 }
-.WeAre {
-    height: 52vh;
+  .WeAre {
+    height: fit-content;
     background: #286F96;
+    padding: 10px;
 }
 .topWeAre {
   display: flex;
   justify-content: center;
-  line-height: 40px;
+  line-height: 48px;
   color: rgb(255, 250, 245);
   font-weight: 700;
   font-size: 60px;
-  padding: 30px;
-  padding-top: 60px;
+  margin: 30px;
+  margin-top: 60px;
 }
 .midWeAre {
   display: flex;
   justify-content: center;
   line-height: 31.5px;
-  color:  rgb(255, 250, 245);
+  color: rgb(255, 250, 245);
   font-weight: 400;
   font-size: 28px;
   padding: 15px;
-  width: 43vw;
+  /* width: 67vw; */
   margin: auto;
 }
 .downWeAre {
   display: flex;
   justify-content: center;
   line-height: 27.5px;
-  color:  rgb(255, 250, 245);
+  color: rgb(255, 250, 245);
   font-weight: 500;
   font-size: 29.5px;
   padding: 15px;
@@ -383,9 +391,9 @@ body {
 .btnContactUs:hover{
   background-color: #3c85acdd;
 }
-.user-profiles{
+.user-profiles {
   width: 100vw;
-  height: 47vh;
+  height: fit-content;
   background-color: white;
 }
 .top-user-profiles span{
@@ -395,21 +403,21 @@ body {
   font-size: 60px;
   padding: 30px;
 }
-.top-user-profiles{
+.top-user-profiles {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100vw;
 }
 .usersAll {
+  height: max-content;
   width: 80vw;
   margin: auto;
-  /* background: #c9b0b0; */
-  height: 64%;
-  display: flex;
+  background: white;
   justify-content: center;
-  gap: 300px;
-  padding: 16px;
+  gap: 8vw;
+  display: flex;
+  flex-wrap: wrap;
 }
 .useR .img {
   width: 133px;
@@ -432,10 +440,7 @@ body {
   width: 100vw;
   height: 20vh;
   display: flex;
-  margin-top: -61px;
   justify-content: center;
-  object-fit: cover;
-  overflow: hidden;
   background: white;
 }
 .SLWrap {
