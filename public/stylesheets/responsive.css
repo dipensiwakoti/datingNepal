@@ -12,17 +12,32 @@ body{
 
 
 } */
-@media screen and (max-width=60vw) {
-   *{
-    background-color: black;
-   }
-    nav{
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-}
-body{
-    background-color: red;
-}
-
-}
+@media screen and (max-width:900px) {
+    .midWeAre{
+        width: 67vw;
+    }
+    .down-intro {
+        width: 80vw;
+    }
+    .textLeft{
+        width: 80vw;
+    }
+    .img{
+        height: 77vw;
+    }
+    
+    }
+    @media screen and (min-width:900px) {
+    .midWeAre{
+        width: 43vw;
+    }
+    .down-intro {
+        width: 43em;
+    }
+    .textLeft{
+        width: 43em;
+    }
+    .img{
+        height: 91.5vh;
+    } 
+    }
