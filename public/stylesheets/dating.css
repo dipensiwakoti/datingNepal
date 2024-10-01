@@ -355,7 +355,6 @@ body {
 .topWeAre {
   display: flex;
   justify-content: center;
-  line-height: 65px;
   color: rgb(255, 250, 245);
   font-weight: 700;
   font-size: 60px;
