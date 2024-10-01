@@ -128,7 +128,6 @@ body {
   }
 }
 .img {
-  /* background-image: url("https://images.unsplash.com/photo-1615966650071-855b15f29ad1?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y291cGxlJTIwaW4lMjBsb3ZlfGVufDB8fDB8fHww"); */
   width: 100vw;
   height: 92.5vh;
   background-repeat: no-repeat;
@@ -309,7 +308,7 @@ body {
 }
 .text {
   height: 120px;
-  width: 70vw;
+  width: 90vw;
   margin: auto;
   margin-top: 52px;
   display: flex;
@@ -337,6 +336,8 @@ body {
   margin-top: 61px;
   margin-left: -10px;
   margin-bottom: 52px;
+  overflow: hidden;
+
 }
 .logoWrap img {
     width: 100%;
@@ -356,6 +357,7 @@ body {
   font-size: 60px;
   margin: 30px;
   margin-top: 60px;
+  overflow: hidden;
 }
 .midWeAre {
   display: flex;
@@ -363,10 +365,11 @@ body {
   line-height: 31.5px;
   color: rgb(255, 250, 245);
   font-weight: 400;
-  font-size: 28px;
+  font-size: 23px;
   padding: 15px;
   /* width: 67vw; */
   margin: auto;
+  overflow: hidden;
 }
 .downWeAre {
   display: flex;
@@ -448,6 +451,7 @@ body {
   width: 358px;
   height: 168px;
   margin-top: 0px;
+  overflow: hidden;
 }
 .subscribeLogo img{
   width: 100%;
