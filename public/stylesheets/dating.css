@@ -225,6 +225,7 @@ body {
 .firstTop img {
   width: 281px;
   height: 110px;
+  margin: auto;
 }
 .secondTop {
   width: fit-content;
@@ -240,6 +241,8 @@ body {
 .secondTop img {
   width: 281px;
   height: 88px;
+  margin: auto;
+
 }
 .thirdTop {
   width: fit-content;
@@ -255,6 +258,7 @@ body {
 .thirdTop img {
   width: 281px;
   height: 88px;
+  margin: auto;
 }
 .introduction {
   width: 100vw;
