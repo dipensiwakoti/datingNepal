@@ -351,7 +351,7 @@ body {
 .topWeAre {
   display: flex;
   justify-content: center;
-  line-height: 48px;
+  line-height: 65px;
   color: rgb(255, 250, 245);
   font-weight: 700;
   font-size: 60px;
@@ -441,17 +441,15 @@ body {
   font-size: 27px;
 }
 .subscribeLogo {
-  width: 100vw;
-  height: 20vh;
   display: flex;
-  justify-content: center;
   background: white;
+  margin-bottom: 30px;
 }
 .SLWrap {
+  display: flex;
+  justify-content: center;
   width: 358px;
   height: 168px;
-  margin-top: 0px;
-  overflow: hidden;
 }
 .subscribeLogo img{
   width: 100%;
