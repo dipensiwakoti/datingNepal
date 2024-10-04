@@ -79,7 +79,3 @@ userinfo.addEventListener("click",()=>{
         },10);
        });
     })
-
-
-
-

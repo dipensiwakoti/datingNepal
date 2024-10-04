@@ -1,6 +1,12 @@
 .wrap{
     display: flex;
 }
+.backIconChat {
+    position: absolute;
+    right: 24px;
+    top: 37px;
+    display: none;
+}
 body{
     overflow: hidden;
     margin: 0px;
@@ -60,8 +66,8 @@ body{
     display: flex;
     align-items: center;
   }
-.allMessages {
-    height: 724px;
+  .allMessages {
+    height: 80%;
     width: 96%;
     margin: auto;
     background-color: rgb(103 98 98);
@@ -76,7 +82,7 @@ body{
     justify-content: center;
     align-items: center;
 }
-.img {
+.ChatImg {
     width: 61px;
     height: 61px;
     border-radius: 100%;
@@ -85,8 +91,7 @@ body{
     overflow: hidden;
     top: 16px;
     position: relative;
-    margin-right: 15px;
-    margin-left: 200px;
+    margin-left: 34px;
 }
 .username {
     font-size: 29px;
@@ -250,8 +255,7 @@ margin-right: 15px;
         height: 100%;
         width: 100%;
         object-fit: cover;
-}
-.allUsers .img {
+}.ChatImg {
     width: 61px;
     height: 61px;
     border-radius: 100%;
@@ -260,8 +264,8 @@ margin-right: 15px;
     overflow: hidden;
     top: 16px;
     position: relative;
-    margin-right: 15px;
-    margin-left: 0px;
+    margin-left: 34px;
+    margin-right: 16px;
 }
 .otherFeatures-mychats{
     margin-top: 20px;

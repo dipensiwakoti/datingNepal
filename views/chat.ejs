@@ -5,9 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat with user</title>
     <link rel="stylesheet" href="/stylesheets/chat.css">
+    <link rel="stylesheet" href="/stylesheets/responsive.css">
+    <link rel="stylesheet" href="/stylesheets/chatResponsive.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
 </head>
-<body>
+<div class="backIconChat">
+  <a href="/myprofile"><i class='bx bx-arrow-back'></i></a>  
+</div>
+<body>  
     <audio id="notificationAudio" src="/audios/notifi.mp3"></audio>
     <div class="wrap">
         <div class="left">
@@ -27,8 +33,10 @@
         </div>
         <div class="middle">
             <div class="wholeChat">
+                <div class="check"></div>
                 <div class="topMiddleChat">
-                    <div class="img">
+
+                    <div class="ChatImg">
                         <img src="/images/profilePictures/<%= searchedUser.profilepic %>" alt="Not found!">
                     </div>
                     <div style="display: flex; flex-direction: column;">
@@ -49,7 +57,9 @@
                 <div class="sendMessage">
                     <form action="#" method="" id="formMsg">
                        <input class="input" type="text" name="sendMsg" id="sendMsg" placeholder=" Message" autocomplete="off">
-                       <input class="submit" type="submit" name="submitMsg" id="submitMsg" value="Send Message">
+                       <button type="submit">
+                        <i class='bx bxs-send' ></i>
+                      </button>
                     </form> 
                 </div>
             </div>
