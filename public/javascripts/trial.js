@@ -9,9 +9,22 @@ const userId = document.querySelector('#userId');
 const moreAboutIcon = document.querySelector('.moreAbout');
 const mouseAbout = document.querySelector('.mouseAbout');
 const moreAboutContent = document.querySelector('.moreAboutContent');
+const menuIcon = document.getElementById('menuBoxIcon');
+const menuIconBox = document.querySelector('.wrapRes_Menu_List'); //whole wrap box
 
 let flag = 0;
 let check = 0;
+let menu = 0;
+menuIcon.addEventListener('click',()=>{
+    if(menu==0){
+        menuIconBox.style.display = 'block';
+        menu = 1;
+    } 
+    else  {
+        menuIconBox.style.display = 'none';
+        menu = 0;
+    }
+})
 profileDisplay.addEventListener("click",()=>{
     if(flag == 0){
         console.log("Done")

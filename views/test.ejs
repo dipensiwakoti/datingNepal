@@ -6,24 +6,40 @@
     <title>Dating.Nepal</title>
     <link rel="stylesheet" href="/stylesheets/dating.css" class="css" />
     <link rel="stylesheet" href="/stylesheets/responsive.css" class="css" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
     <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
   </head>
   <body>
     <input type="hidden" name="userIdActualTest" value="<%= usersss._id %>" id="userIdActualTest">
+    <div class="wrapRes_Menu_List">
+      <div class="Res_Menu_List" style="padding: 25px;">
+          <div><a href="/myprofile"> <i class='bx bxs-user-circle' > </i> <span>My Profile</span></a></div>
+          <div><a href="/logout"><i class='bx bxs-log-out-circle' > </i> <span>Log out</span></a></div>
+          <div><a href="/about"> <i class='bx bx-dna' ></i> <span>About us</span></a></div>
+      </div>
+    </div>
 
     <header>
       <div class="bar"></div>
       <nav>
         <ul>
+          <div class="menuIconDiv">  <i id="menuBoxIcon" class='bx bx-menu'></i></div>
           <img src="/images/userImages/logo.png" alt="Our Logo" class="logo" />
+          <div class="navIconWrap">
+            <div class="li">
           <li><a href="/logout"> Log out</a></li>
           <li><a href="/myprofile"> My Profile </a></li>
           <li><a href="about.html"> About Us </a></li>
+        </div>
+          
         <form action="/searchuser" method="post">
           <input required type="text" name="search" class="input" placeholder="Serch Accounts" />
-          <input style="margin-right: 10px; width: fit-content; padding: 4px;height: fit-content;border: none;" type="submit" class="button" value="Search" />
+          <button type="submit">
+            <i class='bx bx-search' ></i>
+        </button>
         </form>
+      </div>
         </ul>
       </nav>
     </header>
@@ -123,5 +139,7 @@
     
     <footer class="flexallcenter">Copyright &copy; All right reserved.</footer>
   </body>
+  </body>
   <script src="/javascripts/socket.js"></script>
+  <script src="/javascripts/trial.js"></script> 
 </html>
