@@ -1,32 +1,32 @@
 @media screen and (max-width:900px) {
 
-    .users .otherFeatures {
-         display: none;
-     }
-     .left {
-         display: none;
-     }
-     .middle {
-        width: 100vw;
-     }
-     .sendMessage .input {
-        width: 77%;
-        height: 36px;
-        margin-right: 15px;
+  .users .otherFeatures {
+       display: none;
+   }
+   .left {
+       display: none;
+   }
+   .middle {
+      width: 100vw;
+   }
+   .sendMessage .input {
+      width: 70vw;
+      height: 36px;
+      margin-right: 15px;
+  }
+  .our-user-message span {
+      margin-left: 52px;
+  }
+  .allMessages {
+    height: calc(100% - 200px); 
+  }
+  .backIconChat {
+    display: block;
+  }
+  .distinct-user-message {
+      font-size: 16px;
     }
-    .our-user-message span {
-        margin-left: 52px;
+  .our-user-message {
+      font-size: 16px;
     }
-    .allMessages {
-      height: calc(100vh - 200px);
-    }
-    .backIconChat {
-      display: block;
-    }
-    .distinct-user-message {
-        font-size: 16px;
-      }
-    .our-user-message {
-        font-size: 16px;
-      }
- }
+}
