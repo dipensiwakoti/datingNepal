@@ -18,9 +18,15 @@
         margin-left: 52px;
     }
     .allMessages {
-        height: 77%;
+      height: calc(100vh - 200px);
     }
     .backIconChat {
       display: block;
     }
+    .distinct-user-message {
+        font-size: 16px;
+      }
+    .our-user-message {
+        font-size: 16px;
+      }
  }
