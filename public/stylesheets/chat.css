@@ -244,13 +244,12 @@ margin-right: 15px;
 
 .allUsers {
   height: 659px;
-  width: 337px;
+  width: 100%;
   z-index: 999;
   position: relative;
-  margin-left: -22px;
   overflow-y: auto;
   background: #8d8d8d;
-  padding: 5px;
+  padding: 11px;
   border-radius: 16px;
 }
 .chatUser {
@@ -263,16 +262,22 @@ margin-right: 15px;
 .chatUser:hover{
   background: #a1a1a1e7;
 }
-.usernameChat-user{
-  font-size: 22px;
+.usernameChat-user {
+  font-size: 18px;
   display: flex;
   align-items: center;
+  margin-left: 10px;
 }
 .allUsers img {
       height: 100%;
       width: 100%;
-      object-fit: cover;
-}.ChatImg {
+      object-fit: contain;
+}
+.chatUser .img {
+  height: 61px;
+  width: 61px;
+}
+.ChatImg {
   width: 61px;
   height: 61px;
   border-radius: 100%;

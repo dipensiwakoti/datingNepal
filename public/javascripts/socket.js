@@ -12,11 +12,32 @@ console.log('could get .wrapmessages',error);
 } 
 try{
 var chatUsers=  document.querySelectorAll('.chatUser');
-console.log(chatUsers);
+var allUsers=  document.querySelector('.left');
+var middle=  document.querySelectorAll('.middle');
+var backIconMychats=  document.querySelector('.backIconChat');
 chatUsers.forEach((chatUser)=>{
+  middle.forEach((middle)=>{
+
   const chatUserId = chatUser.id;
+  backIconMychats.addEventListener('click',()=>{
+    var displayStyle = window.getComputedStyle(allUsers).display;
+    console.log(displayStyle);
+    if(displayStyle === 'block'){
+      window.location.href = '/myprofile';
+    }
+    else{
+      allUsers.style.display = 'block';
+      middle.style.display = 'none';
+    }
+  })
   chatUser.addEventListener('click',()=>{
+    if (window.innerWidth < 900) {
+      allUsers.style.display = 'none';
+      middle.style.display = 'block';
+      middle.style.width = '100vw'
+  }
   socket.emit('openingChat',{senderId,receiverIdUser:chatUserId});
+  })
 })
 })
 }

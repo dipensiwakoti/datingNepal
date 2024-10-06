@@ -4,10 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat with user</title>
-    <link rel="stylesheet" href="/stylesheets/chat.css">
+    <link rel="stylesheet" href="/stylesheets/chat.css">    
+    <link rel="stylesheet" href="/stylesheets/responsive.css">
+    <link rel="stylesheet" href="/stylesheets/mychatsResponsive.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+
     <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
 </head>
 <body>
+    <div class="backIconChat">
+        <a href="#"><i class='bx bx-arrow-back'></i></a>  
+      </div>
     <audio id="notificationAudio" src="/audios/notifi.mp3"></audio>
     <div class="wrap">
         <div class="left">
@@ -43,13 +51,12 @@
         <div class="middle">
             <div class="wholeChat">
                 <div class="topMiddleChat">
-                    <div class="img">
+                    <div class="ChatImg">
                         <!-- <img src="/images/profilePictures/9e536ecf153ee2e4503fb334.jpg" alt="Not found!"> -->
                     </div>
                     <div style="display: flex; flex-direction: column;">
                     <div class="username"><span></span></div>
                 </div>
-                    <div class="icons"></div>
                 </div>
                 <div class="allMessages">
                     <div class="wrapMessages">
@@ -59,7 +66,12 @@
                 <div class="sendMessage">
                     <form action="#" method="" id="formMsg">
                        <input class="input" type="text" name="sendMsg" id="sendMsg" placeholder=" Message" autocomplete="off">
-                       <input class="submit" type="submit" name="submitMsg" id="submitMsg" value="Send Message">
+                       <button style="
+                        background: #ff3000;
+                        border: none;
+                        border-radius: 23%;" type="submit">
+                        <i class='bx bxs-send' ></i>
+                      </button>
                     </form> 
                 </div>
             </div>
