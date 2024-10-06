@@ -60,7 +60,7 @@ body{
   width: 100%;
 }
 .topMiddleChat {
-  height: 100px;
+  height: 106px;
   width: 100%;
   background-color: #b0b0b899;
   display: flex;
@@ -96,12 +96,29 @@ body{
 .username {
   font-size: 29px;
 }
+.checkStatus {
+  height: 107px;
+  display: flex;
+  flex-direction: column;
+}
 .Offline{
   color: rgb(120 114 114);
+  position: relative;
+  left: 114px;
+  top: -26px;
+  width: fit-content;
+  height: fit-content;
 }
-.Online{
+.Online {
   color: rgb(17, 128, 0);
+  position: relative;
+  left: 114px;
+  top: -26px;
+  width: fit-content;
+  height: fit-content;
 }
+
+
 .middle img {
   height: 100%;
   width: 100%;
@@ -281,4 +298,3 @@ margin-right: 15px;
   border-radius: 7.7px;
   font-weight: 600;
 }
-

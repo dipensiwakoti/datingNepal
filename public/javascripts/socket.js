@@ -62,13 +62,7 @@ middleChat.innerHTML = `                    <div class="ChatImg">
 <div style="display: flex; flex-direction: column;">
 
 <div class="username"><span>${profileName}</span></div>
-<% if (searchedUser.isOnline == 1){ %>
-<div class="userStatus Online" id="<%= searchedUser._id %> status"><span>Online</span></div>
-<%} else{ %>
-<div class="userStatus Offline" id="<%= searchedUser._id %> status"><span>Offline</span></div>
-<% } %>
 </div>
-<div class="icons"></div>
 `;
 
 if(chats.length>0){
