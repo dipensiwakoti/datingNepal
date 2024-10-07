@@ -118,4 +118,7 @@
         left: 32px;
         margin-top: 28px;
     }
+    .followText:hover {
+        font-size:16.3px;
+    }
   }
