@@ -1,0 +1,121 @@
+@media screen and (max-width: 900px){
+    .left {
+        max-width: 60vw;
+        margin-left: 12px;
+    }
+    .profileIcon {
+        width: 61px;
+        height: 61px;
+        margin-bottom: 25px;
+    }
+    .username {
+        font-size: 25px;
+        min-width: 229px;
+        }
+    .followText {
+        font-size: 16px;
+    }
+    .mainIcon span {
+        font-size: 16px;
+    }
+    .editIcon {
+        min-width: fit-content;
+        align-items: flex-start;
+        margin-top: 52px;
+        margin-left: -52px;
+    }
+    .svg-edit {
+        width: 39px;
+        height: 61px;
+    }
+    .wholeView {
+        gap: 17px;
+    }
+    .userInfo span {
+        font-size: 18px;
+    }
+    .bellowNav {
+        width: 58%;
+        margin-top: -5px;
+    }
+    .userInfo .designUserinfo {
+        font-size: 15px;
+    }
+    .moreAbout {
+        font-size: 16px;
+        margin-top: 5px;
+    }
+    .moreAboutContent {
+        top: 640px;
+        left: 49px;
+        min-width: fit-content;
+        font-size: 15px;
+        margin-right: 36px;
+      }
+    .moreAboutContent span {
+        font-size: 13px;
+      }
+      .MF-wrap {
+        gap: 7.7vw;  
+     }
+    .followers{
+        font-size: 15px;
+    }
+    .views{
+        font-size: 15px;
+    }
+    .chat{
+        font-size: 15px;
+    }
+    .txtBio {
+        font-size: 18px;
+    }
+    .contentBio {
+        padding: 12px;
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+    .txtQuote {
+        font-size:18px;
+      }
+    .contentQuote {
+        padding: 12px;
+        font-size: 16px;
+        margin-bottom: 5px;
+        margin-left: -25px;
+    }
+    .formMind {
+        height: 54px;
+        width: 85%;
+        margin: auto;
+          margin-top: auto;
+        margin-top: 50px;
+        padding: 7px;
+      }
+      .form_mind_input {
+        width: 49%;
+        height: 22px;
+        padding: 9px;
+        padding-left: 28px;
+      }
+      .formMind .create {
+        padding: 5px;
+        padding-left: 9px;
+        padding-right: 9px;
+        margin-left: 15px;
+        margin-top: 5px;
+      }
+      .post {
+            width: 94vw;
+            margin: auto;
+            margin-bottom: 20px;
+            margin-top: 16px;
+       }
+       .post .elementsPost .content {
+        font-size: 18px;
+      }
+      .profileUpload {
+        left: 32px;
+        margin-top: 28px;
+    }
+  }

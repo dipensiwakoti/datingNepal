@@ -28,15 +28,13 @@ body{
   height: 100vh;
 }
 .users span {
-      max-width: max-content;
-      height: 60px;
-      font-family: Helvetica, Arial, sans-serifbik;
-      font-size: 25px;
-      color: rgb(5, 5, 5);
-      font-weight: 700;
-      line-height: 52.2px;
-      margin-bottom: 25px;
-      margin-left: 20px;
+  max-width: max-content;
+  height: 60px;
+  font-family: Helvetica, Arial, sans-serifbik;
+  font-size: 25px;
+  color: rgb(5, 5, 5);
+  font-weight: 700;
+  margin-left: 20px;
 }
 .topLook {
   display: flex;
@@ -271,11 +269,14 @@ margin-right: 15px;
 .allUsers img {
       height: 100%;
       width: 100%;
-      object-fit: contain;
+      object-fit: cover;
 }
 .chatUser .img {
   height: 61px;
   width: 61px;
+  border-radius: 100%;
+  overflow: hidden;
+  margin: 6px;
 }
 .ChatImg {
   width: 61px;

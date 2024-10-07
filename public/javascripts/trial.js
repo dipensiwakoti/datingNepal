@@ -15,29 +15,40 @@ const menuIconBox = document.querySelector('.wrapRes_Menu_List'); //whole wrap b
 let flag = 0;
 let check = 0;
 let menu = 0;
-menuIcon.addEventListener('click',()=>{
-    if(menu==0){
-        menuIconBox.style.display = 'block';
-        menu = 1;
-    } 
-    else  {
-        menuIconBox.style.display = 'none';
-        menu = 0;
-    }
-})
-profileDisplay.addEventListener("click",()=>{
-    if(flag == 0){
-        console.log("Done")
-    profileUpload.style.top="269px";
-    wrap.style.filter="blur(0.77px)";
-    flag=1;
-    }
-    else{
-    profileUpload.style.top="-250px";
-    wrap.style.filter="blur(0px)";
-    flag=0;
-    }
-});
+try{
+
+    menuIcon.addEventListener('click',()=>{
+        if(menu==0){
+            menuIconBox.style.display = 'block';
+            menu = 1;
+        } 
+        else  {
+            menuIconBox.style.display = 'none';
+            menu = 0;
+        }
+    })
+}
+catch(err){
+    console.log(err);
+}
+try{
+    profileDisplay.addEventListener("click",()=>{
+        if(flag == 0){
+            console.log("Done")
+        profileUpload.style.top="269px";
+        wrap.style.filter="blur(0.77px)";
+        flag=1;
+        }
+        else{
+        profileUpload.style.top="-250px";
+        wrap.style.filter="blur(0px)";
+        flag=0;
+        }
+    });
+}
+catch{
+    console.log('Coundlt proceed in uploading profile !')
+}
 userinfo.addEventListener("click",()=>{
     check=0;
     profileUpload.style.top="-250px";

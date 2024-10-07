@@ -5,9 +5,9 @@ body{
 .div-icon-back {
     width: 52px;
     height: 52px;
-    top: 60px;
+    top: 93px;
     position: relative;
-    left: 30px;
+    left: 61px;
 }
 .div-icon-back-UP {
     width: 52px;
@@ -33,6 +33,7 @@ body{
     border-radius: 8px;
     z-index: 3;
     flex-direction: column;
+    margin-left: 17%;
 }
 .profileUpload div:hover {
     background-color: #80887e8f;
@@ -79,12 +80,10 @@ body{
 .editIcon{
     width: 400px;
     height: 100%;
-    display: block;
     display: flex;
     margin-right: 100px;
     justify-content: center;
     align-items: center;
-    /* background-color: rgb(71, 152, 65); */
 }
 .wholeView{
     display: flex;
@@ -103,12 +102,10 @@ body{
 }
 .username {
     min-width: max-content;
-    height: 60px;
     font-family: Helvetica, Arial, sans-serifbik;
     font-size: 44px;
     color: rgb(5, 5, 5);
     font-weight: 700;
-    line-height: 52.2px;
 }
 /* // <uniquifier>: Use a unique and descriptive class name
 // <weight>: Use a value from 300 to 900 */
@@ -141,6 +138,10 @@ body{
     border: none;
     border-radius: 20px;
     padding: 10px;
+}
+.mainIcon span {
+    font-size: 25px;
+    margin-bottom: -16px;
 }
 .svg-edit{
     width: 116px;
@@ -348,3 +349,19 @@ body{
 .formMind .create:hover{
   background-color: #049fffc9;
 }
+.post {
+    margin-top: 70px;
+    margin-left: 52px;
+    background-color: rgba(11, 10, 10, 0.875);
+    width: 994px;
+    height: fit-content;
+    margin-bottom: 20px;
+    border-radius: 9px;
+  }
+
+  .post .elementsPost .content {
+    color: white;
+    font-size: 25px;
+    margin-left: 16px;
+    margin-top: 7.7px;
+  }
