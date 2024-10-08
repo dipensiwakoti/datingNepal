@@ -80,13 +80,13 @@ body{
 #submitLoginRes {
     margin-bottom: 17px;
     border: none;
-    width: 70px;
+    width: 79px;
     background-color: #0085ff;
     color: rgb(237, 229, 229);
     border-radius: 20px;
     margin-left: 84px;
     display: none;
-    height: 37px;
+    height: 40px;
 }
 #submitSignUpRes {
     margin-bottom: 17px;
@@ -94,7 +94,7 @@ body{
     width: 70px;
     background-color: #0085ff;
     color: rgb(237, 229, 229);
-    border-radius: 20px;
+    border-radius: 16px;
     margin-left: 84px;
     display: none;
     height: 37px;
