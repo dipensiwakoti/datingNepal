@@ -8,15 +8,52 @@ const userId = document.querySelector('#userId');
 
 const moreAboutIcon = document.querySelector('.moreAbout');
 const mouseAbout = document.querySelector('.mouseAbout');
+const SignUpDiv = document.querySelector('.signup');
+const colorMatch = document.querySelector('.colorMatch');
+const orText = document.querySelector('.orText');
+const loginDiv = document.querySelector('.login');
 const moreAboutContent = document.querySelector('.moreAboutContent');
 const menuIcon = document.getElementById('menuBoxIcon');
+const loginIconRes = document.getElementById('submitLoginRes');
+const signUpIconRes = document.getElementById('submitSignUpRes');
 const menuIconBox = document.querySelector('.wrapRes_Menu_List'); //whole wrap box
+
 
 let flag = 0;
 let check = 0;
 let menu = 0;
 try{
 
+    loginIconRes.addEventListener('click',()=>{
+            SignUpDiv.style.display = 'none';
+            colorMatch.style.display = 'block';
+            orText.style.display = 'none';
+            loginDiv.style.display = 'block';
+    })
+}
+catch(err){
+    console.log(err);
+}
+try{
+
+    signUpIconRes.addEventListener('click',()=>{
+            SignUpDiv.style.display = 'block';
+            colorMatch.style.display = 'none';
+    })
+}
+catch(err){
+    console.log(err);
+}
+// try{
+//     document.getElementById('myloginform').addEventListener('submit', function(event) {
+//         event.preventDefault(); // Prevents the page from reloading    
+//         console.log('login login')   
+//       });
+// }
+// catch(err){
+//     console.log(err);
+// }
+    try {
     menuIcon.addEventListener('click',()=>{
         if(menu==0){
             menuIconBox.style.display = 'block';
