@@ -1,0 +1,89 @@
+*{
+    background-color: rgba(0, 0, 0, 0.767);
+    margin: 0px;
+    padding: 0px;
+}
+.vianet {
+    position: absolute;
+    top: 15%;
+    right: 30%;
+    width: 400px;
+    height: 400px;
+    background: #d1cfcc;
+    border-radius: 4%;
+    margin: 40px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    z-index: 999;
+    @media screen and (max-width: 900px) {
+   right: 8%;
+   width: 300px;
+    }
+  }
+  .wrapperr {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: inherit;
+  }
+  .visCircle {
+  color: white;
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  background: #ff8100;
+  border-radius: 100%;
+  scale: 1.59;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: insideCir 0.89s cubic-bezier(0.59, -0.05, 0.51, 0.96) .2s infinite;
+  }
+  @keyframes insideCir {
+  0% {
+    scale: 1.60;
+  }
+  70% {
+    scale: 1.99;
+  }
+  100% {
+    scale: 1.60;
+  }
+  }
+  .nonCircle {
+  width: 90px;
+  height: 90px;
+  background: #f77d0094;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: nonCir 0.891s cubic-bezier(0.59, -0.05, 0.51, 0.96) .2s infinite;
+  }
+  
+  @keyframes nonCir {
+  0% {
+    scale: 1;
+    opacity: .9;
+  }
+  
+  100% {
+    scale: 1.18;
+    opacity: 0.1;
+  }
+  }
+  .TextBelow {
+  margin: 32px;
+  background: transparent;
+  color: grey;
+  padding: 5.2px;
+  }
+
+  @media screen and (max-width: 450px) {
+    .vianet{
+        width: 250px;
+        right: 3%;
+    }
+     }

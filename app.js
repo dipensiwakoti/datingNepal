@@ -27,6 +27,9 @@ app.use(cookieParser());
 app.get('/login',(req,res)=> {
     res.render("losi",{flag:true, result:true,});
 })
+app.get('/test',(req,res)=> {
+    res.render("check");
+})
 app.post('/login',async (req,res)=> {
   let{email,password}= req.body ;
   let user =await userModel.findOne({email});
@@ -129,7 +132,7 @@ app.post('/searchuser', isLoggedIn,async (req,res)=>{
       }
 
   else{
-      res.send("User with the name is not found!")
+      res.render("noUser");
   }
 })
 app.get('/myprofile',isLoggedIn,async (req,res)=> {
@@ -475,4 +478,4 @@ console.log('like added');
   }
   await post.save();
 })
-server.listen(3000);
+server.listen(4000);
