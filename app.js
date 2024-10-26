@@ -27,9 +27,6 @@ app.use(cookieParser());
 app.get('/login',(req,res)=> {
     res.render("losi",{flag:true, result:true,});
 })
-app.get('/test',(req,res)=> {
-    res.render("check");
-})
 app.post('/login',async (req,res)=> {
   let{email,password}= req.body ;
   let user =await userModel.findOne({email});
@@ -478,4 +475,4 @@ console.log('like added');
   }
   await post.save();
 })
-server.listen(4000);
+server.listen(3000);
