@@ -1,14 +1,12 @@
 const mongoose = require('mongoose');
-mongoose.connect(`mongodb://127.0.0.1:27017/datingNepal`)
-// mongoose.connect('mongodb+srv://DatingNepalTwo:DatingNepalTwoAgain@dating-nepal-test.b9ajo.mongodb.net/?retryWrites=true&w=majority&appName=Dating-Nepal-Test', {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//     tls: true, // Ensure TLS is enabled
-//     tlsAllowInvalidCertificates: true, // Only use this for testing; not recommended for production
-//   })
-//   .then(() => console.log('Connected to MongoDB Atlas!'))
-//   .catch(err => console.error('Error connecting to MongoDB Atlas:', err));
-
+// mongoose.connect(`mongodb://127.0.0.1:27017/datingNepal`)
+mongoose.connect('mongodb+srv://DatingNepalTwo:AfnYuRIJW2jHaYrD@dating-nepal-test.b9ajo.mongodb.net/?retryWrites=true&w=majority&appName=Dating-Nepal-Test', {
+    tls: true, // Ensure TLS is enabled
+    tlsAllowInvalidCertificates: true, // Only use this for testing; not recommended for production
+  })
+  .then(() => console.log('Connected to MongoDB Atlas!'))
+  .catch(err => console.error('Error connecting to MongoDB Atlas:', err));
+  
 const userSchema = mongoose.Schema({
     Name : String,
     ProfileName : String,

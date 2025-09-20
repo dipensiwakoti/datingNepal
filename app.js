@@ -356,7 +356,7 @@ io.on('connection',async (socket)=>{
   console.log('A user Connected',socket.id);
   const userId = socket.handshake.auth.searched; // loggedInUser id
 
-  const updatedUser =  await userModel.findOneAndUpdate({_id:userId},{isOnline:'1',socketId:socket.id},{new:true});
+  const updatedUser =  await userModel.findOneAndUpdate({_id:userId},{isOnline:'1',socketId:socket.id},{new:true}); 
   await updatedUser.save();
   socket.broadcast.emit('onlineStatus',{userId});
 
