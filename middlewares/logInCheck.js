@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 
 module.exports =function isLoggedIn(req,res,next){
    const cookie = req.cookies.token;
-   if(cookie === ""){
+   if(cookie == null){
      res.redirect('/login');
    } else{
     try{
@@ -12,6 +12,7 @@ module.exports =function isLoggedIn(req,res,next){
     }
     catch(error){
       console.log('Error during JWT verification !',error);
+      res.redirect('/login');
     }
    }
 }

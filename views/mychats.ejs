@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat with user</title>
+    <title>MyChats</title>
     <link rel="stylesheet" href="/stylesheets/chat.css">    
     <link rel="stylesheet" href="/stylesheets/responsive.css">
     <link rel="stylesheet" href="/stylesheets/mychatsResponsive.css">
@@ -17,7 +17,7 @@
         <a href="#"><i class='bx bx-arrow-back'></i></a>  
       </div>
     <audio id="notificationAudio" src="/audios/notifi.mp3"></audio>
-    <div class="wrap">
+    <div class="wrap"> 
         <div class="left">
             <div class="users">
                 <div class="topLook">
@@ -32,7 +32,9 @@
                     <% actualUser.chatFriends.forEach(function(chatUser){ %>
                         
                         <div class="chatUser" id="<%= chatUser._id %>">
+
                             <div class="img"><img src="/images/profilePictures/<%= chatUser.profilepic %>" alt="error loading!"></div>
+
                             <div class="usernameChat-user"><%= chatUser.ProfileName %></div>
                         </div>
                    <%  }) %>
@@ -49,6 +51,7 @@
             </div>
         </div>
         <div class="middle">
+            <div id="featureFirst" style="visibility: hidden;"></div>
             <div class="wholeChat">
                 <div class="topMiddleChat">
                     <div class="ChatImg">

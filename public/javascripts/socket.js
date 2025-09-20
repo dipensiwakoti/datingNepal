@@ -5,12 +5,13 @@ const socket = io({
 });
 try{
 var y=  document.querySelector('.wrapMessages');
-console.log(y);
 }
 catch(error){
 console.log('could get .wrapmessages',error);
 } 
 try{
+
+  //myChats things
 var chatUsers=  document.querySelectorAll('.chatUser');
 var allUsers=  document.querySelector('.left');
 var middle=  document.querySelectorAll('.middle');
@@ -37,6 +38,12 @@ chatUsers.forEach((chatUser)=>{
       middle.style.width = '100vw'
   }
   socket.emit('openingChat',{senderId,receiverIdUser:chatUserId});
+
+  var featureF = document.querySelector('#featureFirst');
+  const divElement = document.createElement('div');
+  divElement.classList.add('receiverID');
+  divElement.setAttribute("value", `${chatUserId}`);
+  featureF.appendChild(divElement);
   })
 })
 })
@@ -72,13 +79,12 @@ console.log('not in the chat route!',error);
 socket.on('loadChats', function(e) {
 let i;
 const middleChat = document.querySelector('.topMiddleChat');
-console.log('Loading Chats'); 
 const chats = e.chats;
 const profileName = e.profileName;
-const profilePic = e.profilePic;
+const profilePic = e.profilePic;``
 middleChat.innerHTML = '';
 middleChat.innerHTML = `                    <div class="ChatImg">
-<img src="/images/profilePictures/${profilePic}" alt="Not found!">
+<img src="/images/profilePictures/${profilePic}" alt="Coundn't load">
 </div>
 <div style="display: flex; flex-direction: column;">
 
@@ -87,7 +93,6 @@ middleChat.innerHTML = `                    <div class="ChatImg">
 `;
 
 if(chats.length>0){
-console.log(chats.length);
 var z =  document.querySelector('.wrapMessages');
 z.innerText='';
 for(i=0;i<chats.length;i++){
@@ -122,9 +127,6 @@ z.appendChild(divElement);
 }
 });
 
-socket.emit('userStatus',function(){
-})
-
 try{
 socket.on('onlineStatus',function(data){
    const idValue = `${data.userId} status`;
@@ -133,7 +135,7 @@ socket.on('onlineStatus',function(data){
     z.innerText='';
     z.innerHTML='';
     const element = document.createElement('span');
-    z.classList.remove('userStatus', 'Offline');
+    // z.classList.remove('userStatus', 'Offline');
     element.innerText = 'Online';
     z.classList.add('userStatus', 'Online');
     z.appendChild(element);
@@ -146,55 +148,81 @@ socket.on('offlineStatus',function(data){
   const idValue = `${data.userId} status`;
   var z=  document.querySelector(`#${CSS.escape(idValue)}`);
   z.classList.remove('userStatus', 'Online');
-
   z.innerText='';
   z.innerHTML='';
   const element = document.createElement('span');
   element.innerText = '';
   element.innerText = 'Offline';
-  z.classList.remove('userStatus', 'Online');
   z.classList.add('userStatus', 'Offline');
   z.appendChild(element);
 })
-try{
-var formMsg = document.querySelector('#formMsg');  //gets up the formmm
-var msg = document.querySelector('#sendMsg'); // the msg input area  where msg.vlaue will give the msg
-formMsg.addEventListener('submit',(function(data){
-data.preventDefault();
-console.log(msg.value); 
-const formData = {
-  senderId:senderId ,
-  receiverId: receiverId,
-  message:msg.value ,
-};
-const xhr = new XMLHttpRequest();
-xhr.open('POST', '/chatSave', true);
-xhr.setRequestHeader('Content-Type', 'application/json');   //solves the error faced in the /chatSave route to parse the sent formData
+var formMsgs = document.querySelectorAll('#formMsg');  //gets up the formmm
+var msgs = document.querySelectorAll('#sendMsg'); // the msg input area  where msg.vlaue will give the msg
 
+formMsgs.forEach(formMsg => {
+  msgs.forEach(msg => {
+    
+try{  //sends req to app.js/chatSave route  , with formData , and takes response onload !!, if susceed, it emits on sendMessage , which will further do 
+  formMsg.addEventListener('submit',(function(data){
+  data.preventDefault();
+  console.log(msg.value);  
+  var featureF = document.querySelector('#featureFirst') ;
+  if (featureF) {
+    var children = featureF.querySelector(".receiverID");
+    var formData = {
+      senderId:senderId ,
+      message:msg.value ,
+      receiverId: children.getAttribute("value"),
+    };
+  
+  } else {
+    var formData = {
+      senderId:senderId ,
+      message:msg.value ,
+      receiverId: receiverId,
+    };
+  
+  }
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', '/chatSave', true);
+  xhr.setRequestHeader('Content-Type', 'application/json');   //solves the error faced in the /chatSave route to parse the sent formData
+  
+  
+  xhr.onload = async function() {   //success weather true or false .. this works on response of the app.js , /chatSave  
+      if (xhr.status === 200) {
+          // If the server responds with success
+          try {
+            await socket.emit('sendMessage',{senderId,receiverId,message: msg.value});
+          }
+          catch(err) {
+            var parent = document.querySelector('#featureFirst') ;
+            var children = parent.querySelector(".receiverID");
+            var receiverID = children.getAttribute("value") ;
+            await socket.emit('sendMessage',{senderId,receiverId:receiverID,message: msg.value});
+          }
+          msg.value= '';
+          console.log('Form submitted successfully! Response: ' + xhr.responseText);
+      } else {
+          console.log('Form submission failed! Status: ' + xhr.status);
+      }
+  };
+  
+  xhr.onerror = function() {
+      console.log('An error occurred during the request.');
+  };
+  
+  // Send the form data to the server
+  xhr.send(JSON.stringify(formData));
+  })
+  
+  );}
+  catch(error){
+  console.log('Error getting message form datas!',error)
+  }
 
-xhr.onload = async function() {   //success weather true or false
-    if (xhr.status === 200) {
-        // If the server responds with success
-       await socket.emit('sendMessage',{senderId,receiverId,message: msg.value});
-        msg.value= '';
-        console.log('Form submitted successfully! Response: ' + xhr.responseText);
-    } else {
-        console.log('Form submission failed! Status: ' + xhr.status);
-    }
-};
-
-xhr.onerror = function() {
-    console.log('An error occurred during the request.');
-};
-
-// Send the form data to the server
-xhr.send(JSON.stringify(formData));
-})
-
-);}
-catch(error){
-console.log('Error getting message form datas!',error)
-}
+  });
+});
+ 
       
 var audio = document.getElementById("notificationAudio");
 socket.on('private_message_distinct',function(data){

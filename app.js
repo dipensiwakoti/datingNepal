@@ -139,56 +139,43 @@ app.get('/myprofile',isLoggedIn,async (req,res)=> {
     const jwt_main = req.cookies.ProfileName;
     const jwt_seondform = req.cookies.PhNumber;
     const jwt_thirdform = req.cookies.BioContent;
+    async function toProfile() {
+      const email= req.user.email;
+      if (email== null) {
+          console.log("heres the issue") ;
+      }
+      const users = await userModel.findOne({email}).populate('posts');
+      const updatedUser =await userModel.findOne({email:`${req.user.email}`});
+      if(updatedUser){
+          const name=updatedUser.ProfileName;
+          const age=updatedUser.Age;
+          const lookingFor=updatedUser.LookingFor;
+          const profileName=updatedUser.ProfileName;
+          const relationship=updatedUser.RelationshipStatus;
+          const phNumber=updatedUser.PhNumber;
+          const favSong=updatedUser.FavSong;
+          const gender=updatedUser.Gender;
+          const hobby=updatedUser.Hobby;
+          const religion=updatedUser.Religion;
+          const BioContent = updatedUser.BioContent;
+          const QuoteContent = updatedUser.QuoteContent;
+          const education=updatedUser.Educaion;
+          const profilePic = updatedUser.profilepic;
+          
+          res.render("myprofile",{name,lookingFor,profileName,gender,hobby,religion,favSong,relationship,age,education,BioContent,QuoteContent,profilePic,phNumber,users});
+      }
+  } 
     if(jwt_main=='' || jwt_seondform==''  || jwt_thirdform=='' ){
         if(pass==0){
         res.redirect('/editprofile');
     }
+    
     else {
-        const email= req.user.email;
-        const users = await userModel.findOne({email}).populate('posts');
-        const updatedUser =await userModel.findOne({email:`${req.user.email}`});
-        if(updatedUser){
-            const name=updatedUser.ProfileName;
-            const age=updatedUser.Age;
-            const lookingFor=updatedUser.LookingFor;
-            const profileName=updatedUser.ProfileName;
-            const relationship=updatedUser.RelationshipStatus;
-            const favSong=updatedUser.FavSong;
-            const gender=updatedUser.Gender;
-            const hobby=updatedUser.Hobby;
-            const phNumber=updatedUser.PhNumber;
-            const religion=updatedUser.Religion;
-            const BioContent = updatedUser.BioContent;
-            const QuoteContent = updatedUser.QuoteContent;
-            const education=updatedUser.Educaion;
-            const profilePic = updatedUser.profilepic;
-            res.render("myprofile",{name,lookingFor,profileName,gender,hobby,religion,favSong,relationship,age,education,BioContent,QuoteContent,profilePic,phNumber,users});
-        }
+        toProfile();
         }
 }
     else {
-        const email= req.user.email;
-        const users = await userModel.findOne({email}).populate('posts');
-        const updatedUser =await userModel.findOne({email:`${req.user.email}`});
-        if(updatedUser){
-            const name=updatedUser.ProfileName;
-            const age=updatedUser.Age;
-            const email=updatedUser.email;
-            const lookingFor=updatedUser.LookingFor;
-            const profileName=updatedUser.ProfileName;
-            const relationship=updatedUser.RelationshipStatus;
-            const phNumber=updatedUser.PhNumber;
-            const favSong=updatedUser.FavSong;
-            const gender=updatedUser.Gender;
-            const hobby=updatedUser.Hobby;
-            const religion=updatedUser.Religion;
-            const BioContent = updatedUser.BioContent;
-            const QuoteContent = updatedUser.QuoteContent;
-            const education=updatedUser.Educaion;
-            const profilePic = updatedUser.profilepic;
-
-            res.render("myprofile",{name,lookingFor,profileName,gender,hobby,religion,favSong,relationship,age,education,BioContent,QuoteContent,profilePic,phNumber,users});
-        }
+        toProfile();
         }
 })
 app.get('/editprofile',isLoggedIn,async (req,res)=> {
@@ -196,9 +183,6 @@ app.get('/editprofile',isLoggedIn,async (req,res)=> {
     const jwt_main = req.cookies.ProfileName;
     const jwt_seondform = req.cookies.PhNumber;
     const jwt_thirdform = req.cookies.BioContent;
-    if(jwt_main!=='' && jwt_seondform!==''  && jwt_thirdform!=='' ){
-        await userModel.findOneAndUpdate({email},{ProfilePass:"1"},{new:true});
-    }
     const user = await userModel.findOne({email});
     const usersss = await userModel.findOne({email});
     const profileName = user.ProfileName;
@@ -208,7 +192,10 @@ app.get('/editprofile',isLoggedIn,async (req,res)=> {
     const favSong = user.FavSong;
     const bioContent = user.BioContent;
     const quoteContent = user.QuoteContent;
-
+    
+    if(jwt_main!=='' && jwt_seondform!==''  && jwt_thirdform!=='' ){
+        await userModel.findOneAndUpdate({email},{ProfilePass:"1"},{new:true});
+    }
     res.render("editprofile",{profileName,age,phNumber,favSong,bioContent,quoteContent,profilepass,usersss});      
 })
 app.post('/main', isLoggedIn, async (req, res) => {
@@ -231,7 +218,7 @@ app.post('/main', isLoggedIn, async (req, res) => {
             );
 
             if (mainUpdate) {
-                console.log('Updated Main Successfully');
+                console.log('Updated First Form Successfully');
                 res.cookie("ProfileName","");
                 const token = jwt.sign({ ProfileName: name }, "shhhh");
                 res.cookie("ProfileName", token);
@@ -285,7 +272,7 @@ app.get('/uploadprofile',isLoggedIn,(req,res)=>{
 })
 app.get('/mychats',isLoggedIn,async (req,res)=>{
   const actualUser = await userModel.findOne({email:req.user.email}).populate('chatFriends'); //loggedInUser
-  res.render('mychats',{actualUser:actualUser,});
+  res.render('mychats',{actualUser:actualUser});
 })
 app.post('/upload', upload.single('file'), isLoggedIn, async function (req, res) {
      const email =req.user.email ;
@@ -369,28 +356,26 @@ io.on('connection',async (socket)=>{
   console.log('A user Connected',socket.id);
   const userId = socket.handshake.auth.searched; // loggedInUser id
 
-  // if(lastimportantmessage){
-  //   socket.broadcast.emit('onlineStatus',{lastimportantmessage});
-  // }
   const updatedUser =  await userModel.findOneAndUpdate({_id:userId},{isOnline:'1',socketId:socket.id},{new:true});
-  // console.log(updatedUser)
   await updatedUser.save();
-  // lastimportantmessage = userId;
   socket.broadcast.emit('onlineStatus',{userId});
 
   socket.on('sendMessage',async function(data){
   console.log('sendMessage doing ');
-  console.log(data.receiverId);
-  const userToReceive = await userModel.findOne({_id:data.receiverId});
   const userToSend = await userModel.findOne({_id:data.senderId}); //logged in user
+  console.log("readyyy ?");
+  console.log(data.receiverId) ;
+  const userToReceive = await userModel.findOne({_id:data.receiverId}); //receiving user
 
   if(userToSend.chatFriends.indexOf(data.receiverId)=== -1){ //push if only the user is first time being chatted
   userToSend.chatFriends.push(data.receiverId); // saving that this person chatted with the loggedin user
-  await userToSend.save();
+  userToReceive.chatFriends.push(data.senderId); // saving this user person chatted with the receiving user database too
+  await userToSend.save(); 
+  await userToReceive.save(); 
    }
 
-   const receiverSocket= userToReceive.socketId;
    const senderSocket= userToSend.socketId;
+   const receiverSocket= userToReceive.socketId;
 
    io.to(receiverSocket).emit('private_message_distinct', {
      from: senderSocket,
@@ -421,7 +406,6 @@ io.on('connection',async (socket)=>{
     const updatedUser =  await userModel.findOneAndUpdate({_id:userId},{isOnline:'0'},{new:true});
     await updatedUser.save();
     socket.broadcast.emit('offlineStatus',{userId});
-    console.log('made 0');
   })
 }); 
 
@@ -439,7 +423,7 @@ app.post('/chatSave',async (req,res,next)=>{
   res.status(200).send({success:true,savedChat:savedChat,msg:'Chat inserted sucessfully!',},);  //doesnt reload the page as its xrl request and served for this purpose only!
   next();
 }
-  catch{
+  catch(err){
     res.status(400).send({success:false,msg:err.message});
   }
 })
